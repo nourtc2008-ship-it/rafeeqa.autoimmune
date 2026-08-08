@@ -1903,27 +1903,11 @@
             }
         }
     </script>
-<!-- 🦋 كود عداد الزوار الحقيقي المضمون لمنصة رفيقة (نص صريح) 🦋 -->
-<div style="position: fixed; bottom: 75px; left: 15px; z-index: 999999; background-color: #ffffff; border: 2px solid #D8B4FE; padding: 6px 14px; border-radius: 50px; box-shadow: 0 4px 15px rgba(126, 34, 206, 0.25); font-family: 'Cairo', sans-serif; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: bold; color: #581C87;">
+<!-- 🦋 كود عداد الزوار الحقيقي المضمن لمنصة رفيقة 🦋 -->
+<div style="position: fixed; bottom: 75px; left: 15px; z-index: 999999; background-color: #ffffff; border: 2px solid #D8B4FE; padding: 5px 12px; border-radius: 50px; box-shadow: 0 4px 15px rgba(126, 34, 206, 0.25); font-family: 'Cairo', sans-serif; display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: bold; color: #581C87;">
     <span style="width: 8px; height: 8px; background-color: #10B981; border-radius: 50%; display: inline-block;"></span>
-    <span>زوار رفيقة:</span>
-    <span id="real-visitor-count-text" style="color: #7E22CE; font-size: 12px; font-weight: 800;">...</span>
+    <img src="https://hits.seeyoufarm.org/api/count/incr/badge.svg?url=https%3A%2F%2Frafeeqa-egypt-lupus-app-2026.github.io&count_bg=%237E22CE&title_bg=%23581C87&icon=&icon_color=%23E6E6E6&title=%D8%B2%D9%88%D8%A7%D8%B1%20%D8%B1%D9%81%D9%8A%D9%82%D8%A9&edge_flat=true" alt="عداد زوار رفيقة" style="height: 20px; vertical-align: middle; border-radius: 4px;" />
 </div>
-
-<script>
-    fetch('https://api.counterapi.dev/v1/rafeeqa_lupus_egypt_app/visits/up')
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.count) {
-                document.getElementById('real-visitor-count-text').innerText = data.count;
-            } else {
-                document.getElementById('real-visitor-count-text').innerText = '1';
-            }
-        })
-        .catch(() => {
-            document.getElementById('real-visitor-count-text').innerText = '1';
-        });
-</script>
 </body>
 </html>
 
