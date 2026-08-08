@@ -1,0 +1,1907 @@
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفيقة 💜 | مشوارك مع الذئبة و أمراض المناعة الذاتية… مش لازم تمشيه لوحدك</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js CDN for PDF Download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lupus: {
+                            50: '#FBF7FF',
+                            100: '#F3E8FF',
+                            200: '#E9D5FF',
+                            300: '#D8B4FE',
+                            500: '#A855F7',
+                            600: '#9333EA',
+                            700: '#7E22CE',
+                            800: '#6B21A8',
+                            900: '#581C87',
+                        },
+                        warmBg: '#FAF8FC'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #FAF8FC; color: #3B2A4A; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+
+<body class="bg-warmBg min-h-screen flex flex-col pb-32 overflow-y-auto">
+
+    <!-- ================= SPLASH / ONBOARDING SCREEN ================= -->
+    <div id="splash-screen" class="fixed inset-0 bg-gradient-to-br from-lupus-900 via-lupus-800 to-lupus-700 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
+        <div class="w-28 h-28 rounded-3xl bg-white/10 backdrop-blur-md flex items-center justify-center p-2 mb-6 shadow-2xl border border-white/20 animate-pulse">
+            <!-- Rafeeqa Main Logo -->
+            <img src="rafeeqa-logo.png" alt="رفيقة" class="w-full h-full object-contain drop-shadow" onerror="this.onerror=null; this.src='https://placehold.co/120x120/7E22CE/white?text=رفيقة';">
+        </div>
+        <h1 class="text-3xl font-extrabold mb-2">رفيقة 💜</h1>
+        <p class="text-base text-lupus-100 font-medium mb-8 max-w-sm leading-relaxed">"مشوارك مع الذئبة و أمراض المناعة الذاتية… مش لازم تمشيه لوحدك."</p>
+        <button onclick="startJourney()" class="bg-white text-lupus-800 hover:bg-lupus-50 px-8 py-3.5 rounded-2xl font-bold text-sm shadow-xl transition transform active:scale-95 flex items-center gap-2">
+            <span>ابدئي رحلتك</span>
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <p class="text-xs text-lupus-200/70 mt-8" منصة داعمة ومساحة آمنة لمحاربات الذئبة 🌸</p>
+    </div>
+
+    <!-- ================= TOP NAVIGATION HEADER ================= -->
+    <header class="bg-white/90 backdrop-blur-md border-b border-lupus-100 sticky top-0 z-40 px-4 py-2.5 shadow-sm">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="w-10 h-10 rounded-xl overflow-hidden bg-lupus-50 flex items-center justify-center border border-lupus-200">
+                    <img src="rafeeqa-logo.png" alt="رفيقة" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/40x40/7E22CE/white?text=رفيقة';">
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold text-lupus-800 leading-none">رفيقة</h1>
+           
+        <p class="text-base text-lupus-100 font-medium mb-8 max-w-sm leading-relaxed">"مشوارك مع الذئبة و أمراض المناعة الذاتية… مش لازم تمشيه لوحدك."</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <button onclick="navigateTo('about')" class="bg-lupus-50 hover:bg-lupus-100 text-lupus-800 border border-lupus-200 text-xs px-3 py-1.5 rounded-full font-bold transition">
+                    عن رفيقة 💜
+                </button>
+
+                <button onclick="navigateTo('profile')" class="bg-lupus-50 hover:bg-lupus-100 text-lupus-800 border border-lupus-200 text-xs px-3 py-1.5 rounded-full font-bold flex items-center gap-1 transition">
+                    <i class="fa-solid fa-user text-lupus-600"></i>
+                    <span id="nav-user-name">حسابي</span>
+                </button>
+
+                <button onclick="openEmergencyModal()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs px-3 py-1.5 rounded-full font-bold flex items-center gap-1 transition shadow-sm">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-500"></i>
+                    <span class="hidden sm:inline">🚨 محتاجة مساعدة دلوقتي؟</span>
+                    <span class="sm:hidden">طوارئ</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTAINER ================= -->
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+
+        <!-- Banner Disclaimer -->
+        <div class="bg-lupus-50 border-r-4 border-lupus-500 p-3 rounded-xl mb-6 text-xs text-lupus-900 flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-heart text-lupus-600 text-base"></i>
+                <span><strong>منصة داعمة وتوعوية:</strong> رفيقة تهدف لمساندتك وتنظيم معلوماتك، ولا تقدم تشخيصاً طبياً ولا تستبدل طبيبك المتابع.</span>
+            </div>
+            <button onclick="navigateTo('privacy')" class="text-lupus-700 font-bold underline text-[11px] whitespace-nowrap">الخصوصية</button>
+        </div>
+
+        <div id="app-views">
+
+            <!-- ================= HOME SCREEN ================= -->
+            <section id="view-home" class="space-y-6">
+                <!-- Welcome Card -->
+                <div class="bg-gradient-to-r from-lupus-800 to-lupus-600 text-white p-6 rounded-3xl shadow-md relative overflow-hidden">
+                    <div class="absolute -left-4 -bottom-4 opacity-10 text-9xl select-none">💜</div>
+                    <h2 class="text-2xl font-bold mb-1">أهلًا بيكي في رفيقة 💜</h2>
+                    <p class="text-sm text-lupus-100 mb-4">إيه أخبارك النهارده يا <span id="home-user-name" class="underline decoration-lupus-300">مريم</span>؟</p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="navigateTo('tracker')" class="bg-white text-lupus-800 hover:bg-lupus-50 px-4 py-2 rounded-xl text-xs font-bold shadow transition flex items-center gap-2">
+                            <i class="fa-solid fa-pen-to-square text-lupus-600"></i>
+                            تسجيل حالة اليوم
+                        </button>
+                        <button onclick="navigateTo('assess')" class="bg-lupus-700/60 hover:bg-lupus-700 border border-lupus-300/40 text-white px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                            <i class="fa-solid fa-stethoscope"></i>
+                            تقييم «اطمني»
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 6 Core Section Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <!-- 1. اطمني -->
+                    <div onclick="navigateTo('assess')" class="bg-white p-5 rounded-2xl border border-lupus-200 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shadow-inner">🩺</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">اطمني</h3>
+                                <p class="text-xs text-gray-500 mt-0.5">تقييم أولي استرشادي للأعراض وتوجيه لطبيبك</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                    <!-- 2. أخبار صحتك -->
+                    <div onclick="navigateTo('tracker')" class="bg-white p-5 rounded-2xl border border-lupus-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-lupus-100 text-lupus-700 flex items-center justify-center text-xl shadow-inner">📊</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">أخبار صحتك</h3>
+                                <p class="text-xs text-gray-500">تتبع الأعراض اليومية والأدوية والتحاليل وملخص الطبيب</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                    <!-- 3. لست وحدك -->
+                    <div onclick="navigateTo('chat')" class="bg-white p-5 rounded-2xl border border-lupus-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl shadow-inner">🤍</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">لست وحدك</h3>
+                                <p class="text-xs text-gray-500">مساحة دعم ونفحات أمل وجروب الواتساب المباشر</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                    <!-- 4. سوا -->
+                    <div onclick="navigateTo('forum')" class="bg-white p-5 rounded-2xl border border-lupus-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-fuchsia-100 text-fuchsia-700 flex items-center justify-center text-xl shadow-inner">👭</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">سوا (المنتدى)</h3>
+                                <p class="text-xs text-gray-500">منتدى محمي بمستويات نشر وتفاعل مجهول وعام</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                    <!-- 5. وصال -->
+                    <div onclick="navigateTo('connect')" class="bg-white p-5 rounded-2xl border border-lupus-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl shadow-inner">🫂</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">وصال</h3>
+                                <p class="text-xs text-gray-500">مطابقة تجريبية قائمة على اهتمامات المريضات</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                    <!-- 6. اتعلمي مرضك -->
+                    <div onclick="navigateTo('learn')" class="bg-white p-5 rounded-2xl border border-lupus-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center text-xl shadow-inner">📚</div>
+                            <div>
+                                <h3 class="font-bold text-gray-800">اتعلمي مرضك</h3>
+                                <p class="text-xs text-gray-500">مكتبة توعوية، اختبارات، وأساطير وحقائق معتمدة</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-left text-gray-300 group-hover:text-lupus-600 transition"></i>
+                    </div>
+
+                </div>
+
+                <!-- Emergency Banner Card -->
+                <div class="bg-rose-50 border border-rose-200 p-5 rounded-3xl flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-lg font-bold">🚨</div>
+                        <div>
+                            <h4 class="font-bold text-rose-900 text-sm">محتاجة مساعدة دلوقتي؟</h4>
+                            <p class="text-xs text-rose-700">إرشادات طوارئ وآمان مجانية فورية عند الحاجة</p>
+                        </div>
+                    </div>
+                    <button onclick="openEmergencyModal()" class="bg-rose-600 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-rose-700 transition">فتح الطوارئ</button>
+                </div>
+            </section>
+
+            <!-- ================= SECTION: عن رفيقة ================= -->
+            <section id="view-about" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4 border-b border-lupus-100 pb-4">
+                        <div class="w-16 h-16 rounded-2xl overflow-hidden bg-lupus-50 border border-lupus-200 flex-shrink-0">
+                            <img src="rafeeqa-logo.png" alt="رفيقة" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/80x80/7E22CE/white?text=رفيقة';">
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-lupus-800">عن رفيقة 💜</h2>
+                            <p class="text-xs text-lupus-600 font-semibold">مشوارك مع الذئبة و أمراض المناعة الذاتية… مش لازم تمشيه لوحدك.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs text-gray-700 leading-relaxed font-semibold">
+                        <p class="bg-lupus-50 p-4 rounded-2xl border border-lupus-100">
+                            «رفيقة هي منصة داعمة لمريضات الذئبة و أمراض المناعة الذاتية ، هدفها أن تجمع في مكان واحد التوعية، متابعة الحالة، الدعم النفسي، التواصل بين المريضات، والمعلومات الموثوقة.»
+                        </p>
+                        <p class="bg-warmBg p-4 rounded-2xl border border-gray-100">
+                            «رفيقة لا تهدف إلى تشخيص المرض أو استبدال الطبيب، لكنها تساعد المريضة على فهم حالتها، متابعة يومها، الاستعداد لزيارة الطبيب، والوصول إلى الدعم والمعلومة المناسبة.»
+                        </p>
+                        <p class="bg-lupus-50/50 p-4 rounded-2xl border border-lupus-100 text-lupus-900 font-bold">
+                            «رفيقة بدأت من فكرة بسيطة: إن مريضة الذئبة و الأمراض المناعية محتاجة تحس إنها مش لوحدها.»
+                        </p>
+                    </div>
+
+                    <div class="text-center pt-4 border-t border-lupus-100 font-bold text-sm text-lupus-800">
+                        «رفيقة… لأنك مش مضطرة تمشي الرحلة لوحدك. 💜»
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 2. SECTION: اطمني ================= -->
+            <section id="view-assess" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-6">
+                    <div class="border-b border-lupus-100 pb-4">
+                        <h2 class="text-xl font-bold text-lupus-800">🩺 قسم «اطمني»</h2>
+                        <p class="text-sm font-semibold text-gray-700 mt-1">"عندك أعراض مقلقاكي ومش عارفة تبدأي منين؟"</p>
+                        <p class="text-xs text-gray-500 mt-1">جاوبي على الأسئلة البسيطة دي لمساعدتك وتوجيهك فقط.</p>
+                    </div>
+
+                    <!-- STEP 1: DEMOGRAPHICS FORM -->
+                    <div class="space-y-4 bg-lupus-50/60 p-5 rounded-2xl border border-lupus-100">
+                        <h3 class="font-bold text-xs text-lupus-900 flex items-center gap-2">
+                            <i class="fa-solid fa-id-card text-lupus-700"></i>
+                            الخطوة 1: البيانات الشخصية والبيولوجية
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <label class="font-bold text-gray-700 block mb-1">الجنس:</label>
+                                <select id="assess-gender" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white">
+                                    <option value="female" selected>أنثى (النسبة الأكثر انتشاراً للذئبة)</option>
+                                    <option value="male">ذكر</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-bold text-gray-700 block mb-1">العمر (بالسنوات):</label>
+                                <input type="number" id="assess-age" value="28" min="5" max="90" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="font-bold text-gray-700 block mb-1">الطول (سم):</label>
+                                <input type="number" id="assess-height" value="165" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white">
+                            </div>
+                            <div>
+                                <label class="font-bold text-gray-700 block mb-1">الوزن الحالي (كجم):</label>
+                                <input type="number" id="assess-weight" value="63" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="font-bold text-gray-700 block mb-1">هل يوجد تاريخ عائلي لأمراض مناعية ذاتية؟:</label>
+                                <select id="assess-family-history" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white">
+                                    <option value="yes">نعم، يوجد أقارب مصابون (ذئبة، روماتويد، صدفية، غدة مناعية...)</option>
+                                    <option value="no" selected>لا يوجد تاريخ عائلي معروف</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: CATEGORIZED SYMPTOMS CHECKLIST -->
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-xs text-lupus-900 flex items-center gap-2 border-b border-lupus-100 pb-2">
+                            <i class="fa-solid fa-list-check text-lupus-700"></i>
+                            الخطوة 2: الأعراض والمؤشرات الملاحظة:
+                        </h3>
+
+                        <div class="space-y-3 text-xs">
+                            <label class="flex items-start gap-2.5 p-3 bg-warmBg rounded-xl border border-gray-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-lupus-600 rounded mt-0.5 acr-cb" value="1">
+                                <div><span class="font-bold text-gray-800 block">طفح أحمر على الوجنتين وجسر الأنف (طفح الفراشة)</span></div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-3 bg-warmBg rounded-xl border border-gray-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-lupus-600 rounded mt-0.5 acr-cb" value="1">
+                                <div><span class="font-bold text-gray-800 block">ألم أو تورم في مفصلين أو أكثر مع تيبس صباحي</span></div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-3 bg-warmBg rounded-xl border border-gray-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-lupus-600 rounded mt-0.5 acr-cb" value="1">
+                                <div><span class="font-bold text-gray-800 block">حساسية غير طبيعية للشمس أو طفح جلدي بعد الضوء</span></div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-3 bg-warmBg rounded-xl border border-gray-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-lupus-600 rounded mt-0.5 acr-cb" value="2">
+                                <div><span class="font-bold text-gray-800 block">ألم حاد في الصدر عند أخذ نفس عميق</span></div>
+                            </label>
+                            <label class="flex items-start gap-2.5 p-3 bg-warmBg rounded-xl border border-gray-100 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4 text-lupus-600 rounded mt-0.5 acr-cb" value="2">
+                                <div><span class="font-bold text-gray-800 block">انتفاخ بالساقين أو الكاحلين أو وجود رغوة بالبول</span></div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateACRScreening()" class="w-full bg-lupus-700 text-white py-3.5 rounded-2xl font-bold hover:bg-lupus-800 transition shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calculator"></i>
+                        ابدئي التقييم
+                    </button>
+
+                    <!-- RESULT PANEL -->
+                    <div id="assess-result" class="hidden p-5 rounded-2xl space-y-3 text-xs border">
+                        <div id="assess-badge" class="font-bold text-sm flex items-center gap-2"></div>
+                        <p id="assess-desc" class="text-gray-700 leading-relaxed"></p>
+
+                        <div class="bg-white p-3 rounded-xl border border-gray-200 text-gray-600 space-y-1">
+                            <p class="font-bold text-lupus-900">📌 تنبيه طبي مهم:</p>
+                            <p class="text-[11px]">«هذا التقييم لا يُشخّص الذئبة ولا يغني عن تقييم الطبيب.»</p>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <button onclick="navigateTo('tracker')" class="bg-lupus-700 text-white px-4 py-2 rounded-xl font-bold">سجلي الأعراض في «أخبار صحتك»</button>
+                            <button onclick="openEmergencyModal()" class="bg-rose-100 text-rose-700 px-4 py-2 rounded-xl font-bold">إرشادات عاجلة</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 3. SECTION: أخبار صحتك ================= -->
+            <section id="view-tracker" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <!-- Sub-Navigation Tabs for Section 2 -->
+                <div class="flex gap-2 border-b border-lupus-100 pb-2 text-xs font-bold overflow-x-auto">
+                    <button onclick="switchTrackerSubTab('checkin')" id="tracker-subtab-btn-checkin" class="px-4 py-2 rounded-xl bg-lupus-700 text-white">تسجيل اليوم 📊</button>
+                    <button onclick="switchTrackerSubTab('dashboard')" id="tracker-subtab-btn-dashboard" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">لوحة المتابعة 📈</button>
+                    <button onclick="switchTrackerSubTab('labs')" id="tracker-subtab-btn-labs" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">التحاليل 🧪</button>
+                    <button onclick="switchTrackerSubTab('meds')" id="tracker-subtab-btn-meds" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">أدويتي 💊</button>
+                    <button onclick="switchTrackerSubTab('doctor-summary')" id="tracker-subtab-btn-doctor-summary" class="px-4 py-2 rounded-xl bg-lupus-100 text-lupus-800 hover:bg-lupus-200">جهة ملخصي للطبيب 📄</button>
+                </div>
+
+                <!-- System Config Bar -->
+                <div class="bg-white p-5 rounded-3xl border border-lupus-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-lupus-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-sliders text-lupus-700 text-base"></i>
+                            <h3 class="font-bold text-lupus-900 text-sm">تخصيص الأجهزة المتابعة لجسدك ومضاعفاتها</h3>
+                        </div>
+                        <button onclick="toggleSystemSettingsModal()" class="text-xs text-lupus-700 bg-lupus-100 hover:bg-lupus-200 font-bold px-3 py-1 rounded-xl transition">
+                            تعديل الأجهزة ⚙️
+                        </button>
+                    </div>
+                    <div id="system-chips-bar" class="flex flex-wrap gap-2 text-xs pt-1"></div>
+                </div>
+
+                <!-- SUB-TAB 1: DAILY CHECK-IN -->
+                <div id="tracker-subtab-checkin" class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-6">
+                    <div class="border-b border-lupus-100 pb-3 flex items-center justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold text-lupus-800">تسجيل يوميات صحتك الحقيقية 🌸</h2>
+                            <p class="text-xs text-gray-500">اختر الأعراض والمضاعفات الظاهرة اليوم فقط ليتم حفظها في سجلاتك</p>
+                        </div>
+                        <span id="current-date-badge" class="text-xs font-bold text-lupus-700 bg-lupus-50 px-3 py-1 rounded-full border border-lupus-200">اليوم</span>
+                    </div>
+                    
+                    <!-- Sliders -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-lupus-50 p-4 rounded-2xl border border-lupus-100">
+                            <div class="flex justify-between text-xs mb-2 font-bold text-lupus-900">
+                                <span>طاقتك النهاردة؟ (مستوى الإرهاق 1-10):</span>
+                                <span id="fatigue-val" class="text-lupus-700 font-extrabold">5 / 10</span>
+                            </div>
+                            <input type="range" id="fatigue-slider" min="1" max="10" value="5" oninput="document.getElementById('fatigue-val').innerText = this.value + ' / 10'" class="w-full accent-lupus-700">
+                        </div>
+
+                        <div class="bg-lupus-50 p-4 rounded-2xl border border-lupus-100">
+                            <div class="flex justify-between text-xs mb-2 font-bold text-lupus-900">
+                                <span>الألم اليوم؟ (1-10):</span>
+                                <span id="pain-val" class="text-lupus-700 font-extrabold">3 / 10</span>
+                            </div>
+                            <input type="range" id="pain-slider" min="1" max="10" value="3" oninput="document.getElementById('pain-val').innerText = this.value + ' / 10'" class="w-full accent-lupus-700">
+                        </div>
+                    </div>
+
+                    <!-- Sleep & Mood Radio Selection -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <div class="space-y-1">
+                            <label class="font-bold text-gray-800 text-xs block">جودة النوم اليوم:</label>
+                            <div class="grid grid-cols-3 gap-2 text-xs">
+                                <button type="button" onclick="selectSleepQuality('سيئ', this)" class="sleep-opt-btn p-2.5 border rounded-2xl text-center bg-white hover:bg-lupus-50 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>😴</span> <span>سيئ</span>
+                                </button>
+                                <button type="button" onclick="selectSleepQuality('متوسط', this)" class="sleep-opt-btn sleep-selected p-2.5 border rounded-2xl text-center bg-lupus-700 text-white border-lupus-700 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>😐</span> <span>متوسط</span>
+                                </button>
+                                <button type="button" onclick="selectSleepQuality('جيد', this)" class="sleep-opt-btn p-2.5 border rounded-2xl text-center bg-white hover:bg-lupus-50 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>😊</span> <span>جيد</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1">
+                            <label class="font-bold text-gray-800 text-xs block">المزاج العام اليوم:</label>
+                            <div class="grid grid-cols-3 gap-2 text-xs">
+                                <button type="button" onclick="selectMoodQuality('سيئ', this)" class="mood-opt-btn p-2.5 border rounded-2xl text-center bg-white hover:bg-lupus-50 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>😞</span> <span>سيئ</span>
+                                </button>
+                                <button type="button" onclick="selectMoodQuality('عادي', this)" class="mood-opt-btn mood-selected p-2.5 border rounded-2xl text-center bg-lupus-700 text-white border-lupus-700 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>😐</span> <span>عادي</span>
+                                </button>
+                                <button type="button" onclick="selectMoodQuality('جيد', this)" class="mood-opt-btn p-2.5 border rounded-2xl text-center bg-white hover:bg-lupus-50 transition flex items-center justify-center gap-1.5 font-bold">
+                                    <span>🙂</span> <span>جيد</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exhaustive SLE Symptoms & Complications Rendered Dynamically -->
+                    <div id="comprehensive-symptoms-container" class="space-y-4"></div>
+
+                    <!-- Medication Change Check -->
+                    <div class="bg-warmBg p-3 rounded-2xl border text-xs space-y-1">
+                        <label class="flex items-center gap-2 cursor-pointer font-bold text-gray-800">
+                            <input type="checkbox" id="med-change-cb" class="rounded text-lupus-600">
+                            <span>هل حصل تغيير أو مشكلة في الأدوية اليوم؟</span>
+                        </label>
+                    </div>
+
+                    <!-- Free Text Notes -->
+                    <div class="space-y-2 pt-2 border-t border-lupus-100">
+                        <label class="font-bold text-gray-800 text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-pen-clip text-lupus-600"></i>
+                            ملاحظات حرة يومية (أي عرض غريب، ضغط، أكل معين، أو تدوينة خاصة):
+                        </label>
+                        <textarea id="free-daily-notes" rows="3" class="w-full border border-gray-200 rounded-2xl p-3 text-xs focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-warmBg/50" placeholder="اكتبي هنا أفكارك أو أعراضك المخصصة النهاردة..."></textarea>
+                    </div>
+
+                    <button onclick="saveDailyLogPersistent()" class="w-full bg-lupus-700 text-white py-3.5 rounded-2xl font-bold hover:bg-lupus-800 transition shadow-md flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        حفظ تسجيل اليوم 💾
+                    </button>
+                </div>
+
+                <!-- SUB-TAB 2: DASHBOARD -->
+                <div id="tracker-subtab-dashboard" class="hidden space-y-4">
+                    <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-4">
+                        <h3 class="font-bold text-gray-800 text-base border-b pb-2">لوحة المتابعة والتحليل الشخصي</h3>
+                        <div id="dashboard-content" class="space-y-4 text-xs">
+                            <!-- Rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-TAB 3: LABS (التحاليل) -->
+                <div id="tracker-subtab-labs" class="hidden space-y-4">
+                    <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-base">تحاليل ومتابعة 🧪</h3>
+                                <p class="text-xs text-gray-500">حفظ نتائج التحاليل لتنظيمها وعرضها لطبيبك.</p>
+                            </div>
+                            <button onclick="openAddLabModal()" class="bg-lupus-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold">+ إضافة تحليل</button>
+                        </div>
+
+                        <div id="labs-list" class="space-y-2 text-xs">
+                            <!-- Rendered dynamically -->
+                        </div>
+
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900">
+                            🔒 <strong>تنبيه:</strong> هذه الصفحة لحفظ نتائجك فقط، والتطبيق لا يقدم تفسيراً أو تشخيصاً للنتائج.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-TAB 4: MEDS (أدويتي) -->
+                <div id="tracker-subtab-meds" class="hidden space-y-4">
+                    <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-4">
+                        <div class="flex justify-between items-center border-b pb-2">
+                            <div>
+                                <h3 class="font-bold text-gray-800 text-base">أدويتي 💊</h3>
+                                <p class="text-xs text-gray-500">جدول أدويتك ومتابعة الانتظام اليومي.</p>
+                            </div>
+                            <button onclick="openAddMedModal()" class="bg-lupus-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold">+ إضافة دواء</button>
+                        </div>
+
+                        <div id="meds-list" class="space-y-2 text-xs">
+                            <!-- Rendered dynamically -->
+                        </div>
+
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900">
+                            ⚠️ <strong>تنبيه طبي:</strong> رفيقة لا تقترح تغيير الجرعات أو إيقاف الأدوية إطلاقاً. ارجعي دائماً لطبيبك.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SUB-TAB 5: DOCTOR SUMMARY (جهزي ملخصي للطبيب) WITH REAL PDF DOWNLOAD -->
+                <div id="tracker-subtab-doctor-summary" class="hidden space-y-4">
+                    <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-5">
+                        <div class="flex justify-between items-center border-b pb-3">
+                            <div>
+                                <h3 class="font-bold text-lupus-800 text-lg">📄 ملخصي للطبيب</h3>
+                                <p class="text-xs text-gray-500">تقرير مرتب يجمع بياناتك المسجلة خلال آخر 30 يوماً.</p>
+                            </div>
+                            <button onclick="downloadDoctorReportPDF()" class="bg-lupus-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-lupus-800 shadow flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                طباعة / حفظ كـ PDF 🖨️
+                            </button>
+                        </div>
+
+                        <!-- Printable PDF Target Container -->
+                        <div id="printable-doctor-report" class="space-y-4 text-xs text-gray-700 p-5 bg-white rounded-2xl border border-gray-200 shadow-sm">
+                            <div id="dynamic-report-content" class="space-y-4"></div>
+                        </div>
+
+                        <div class="space-y-2 pt-2 border-t border-lupus-100">
+                            <label class="font-bold text-gray-800 text-xs block">أسئلة وملاحظات خاصة تريدين طرحها على طبيب الروماتيزم والمناعة:</label>
+                            <textarea id="doctor-custom-questions" oninput="saveDoctorQuestions()" rows="3" class="w-full border border-gray-200 rounded-xl p-3 text-xs focus:ring-1 focus:ring-lupus-500 focus:outline-none" placeholder="اكتبي أسئلتك هنا للطبيب..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 4. SECTION: جهزي زيارتي ================= -->
+            <section id="view-doctor-report" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div>
+                            <h2 class="text-xl font-bold text-lupus-800">تقرير زيارة الطبيب (تجميع لآخر 3 أشهر)</h2>
+                            <p class="text-xs text-gray-500">مجمع تلقائياً حصرياً من سجلاتك وملاحظاتك الحقيقية المسجلة</p>
+                        </div>
+                        <button onclick="downloadDoctorReportPDF()" class="bg-lupus-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-lupus-800 transition flex items-center gap-1.5 shadow">
+                            <i class="fa-solid fa-file-pdf"></i>
+                            طباعة / حفظ كـ PDF 🖨️
+                        </button>
+                    </div>
+
+                    <div id="dynamic-report-content-view" class="space-y-4 text-xs text-gray-700 p-4 bg-white rounded-2xl border border-gray-100"></div>
+                </div>
+            </section>
+
+            <!-- ================= 5. SECTION: لست وحدك (SMART DYNAMIC AI CHAT + LEST WAHDAK INITIATIVE) ================= -->
+            <section id="view-chat" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <!-- LEST WAHDAK INITIATIVE HEADER & LOGO CARD -->
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-5">
+                    <div class="flex items-center gap-4 border-b border-lupus-100 pb-4">
+                        <div class="w-16 h-16 rounded-2xl overflow-hidden bg-lupus-50 border border-lupus-200 flex-shrink-0">
+                            <img src="lest-wahdak-logo.png" alt="لست وحدك" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/80x80/7E22CE/white?text=لست+وحدك';">
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-extrabold text-lupus-800">مبادرة «لست وحدك» 💜</h2>
+                            <p class="text-xs text-lupus-600 font-bold mt-0.5">معاً.. نتعافى، نتعلم، وننقدم — مبادرة لدعم مرضى جميع الأمراض المناعية</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-lupus-50 p-4 rounded-2xl border border-lupus-100 space-y-2 text-xs text-lupus-900 leading-relaxed font-semibold">
+                        <p>«من فكرة لست وحدك بدأت رفيقة، والهدف إن كل مريضة تلاقي مكان آمن تسمع فيه وتتحس إنها مفهومة.»</p>
+                        <p class="text-gray-600 font-normal">«لو محتاجة تتكلمي مع ناس فاهمينك بجد، تقدري تنضمي لمجموعة لست وحدك على واتساب، وهي المجموعة التي بدأت منها فكرة رفيقة.»</p>
+                    </div>
+
+                    <!-- Real WhatsApp Group Link & Real Contacts -->
+                    <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl space-y-3 text-xs">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="font-bold text-emerald-900 text-sm">«مجتمع لست وحدك على واتساب» 💜</span>
+                            <a href="https://chat.whatsapp.com/LTBPRdOL1lb7OBT8Lf9ALH?s=cl&p=a&mlu=0" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>انضمي لجروب لست وحدك على واتساب</span>
+                            </a>
+                        </div>
+                        
+                        <div class="pt-2 border-t border-emerald-200/60 text-[11px] text-emerald-950 font-semibold space-y-1">
+                            <p>📞 للتواصل المباشر مع إدارة المبادرة:</p>
+                            <p>• مريم همام: <a href="tel:01141709571" class="underline font-bold text-emerald-800">01141709571</a></p>
+                            <p>• نور محمد: <a href="tel:01289445206" class="underline font-bold text-emerald-800">01289445206</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CHATBOT & FADHFDHA INTERFACE -->
+                <div class="bg-white rounded-3xl border border-lupus-200 shadow-sm h-[480px] flex flex-col overflow-hidden">
+                    <div class="bg-lupus-100 p-4 border-b border-lupus-200 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-lupus-700 text-white flex items-center justify-center font-bold text-sm">💜</div>
+                        <div>
+                            <h3 class="font-bold text-lupus-900 text-sm">رفيقة - مساعدتك النفسية والداعمة الذكية</h3>
+                            <p class="text-[10px] text-lupus-700 font-semibold">"إحنا هنا نسمعك 💜" (أنا رفيقة دعم، ولست طبيبة أو معالجة نفسية)</p>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-lupus-50/50 flex flex-wrap gap-2 text-xs font-bold border-b">
+                        <button onclick="sendQuickChat('عايزة أتكلم وفضفض')" class="bg-white text-lupus-800 px-3 py-1.5 rounded-xl border border-lupus-200 hover:bg-lupus-100">💬 عايزة أتكلم</button>
+                        <button onclick="sendQuickChat('حاسة بتعب ومشاعر ممتلئة النهارده')" class="bg-white text-lupus-800 px-3 py-1.5 rounded-xl border border-lupus-200 hover:bg-lupus-100">🧠 مشاعري النهارده</button>
+                        <button onclick="sendQuickChat('محتاجة حاجة تساعدني أهدى وركز')" class="bg-white text-lupus-800 px-3 py-1.5 rounded-xl border border-lupus-200 hover:bg-lupus-100">🌱 محتاجة حاجة تساعدني أهدى</button>
+                    </div>
+
+                    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-warmBg text-xs">
+                        <div class="bg-white p-3 rounded-2xl rounded-tr-none border border-gray-100 max-w-[85%] text-gray-700 shadow-sm leading-relaxed">
+                            أهلاً بيكي يا رفيقتي 🌸 أنا رفيقة دعم، ولست طبيبة أو معالجة نفسية. أنا هنا عشان أسمعك بكل محبة وبدون أحكام.. طمنيني عليكي؟
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-white border-t border-gray-100 flex items-center gap-2">
+                        <input id="chat-input" type="text" placeholder="اكتبي رسالتك هنا (مثلاً: حاسة بوجع ف مفاصلي، خايفة من الكورتيزون)..." class="flex-1 border border-gray-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-lupus-500" onkeypress="if(event.key==='Enter') sendChatMessage()">
+                        <button onclick="sendChatMessage()" class="bg-lupus-700 text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-lupus-800 transition">إرسال</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= 6. SECTION: سوا (FULL INTERACTIVE FORUM) ================= -->
+            <section id="view-forum" class="hidden space-y-4">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-purple-50 border border-purple-200 p-3 rounded-2xl text-xs text-purple-900 space-y-1">
+                    <p class="font-bold">قواعد مجتمع سوا 💜</p>
+                    <p>المساحة دي للدعم الإنساني. يمنع تماماً تبادل الأدوية أو تغيير الجرعات بين المريضات.</p>
+                </div>
+
+                <div class="bg-white p-4 rounded-2xl border border-lupus-200 shadow-sm space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-xs text-lupus-900">إنشاء مشاركة جديدة</span>
+                        <button onclick="openAddPostModal()" class="bg-lupus-700 text-white px-3 py-1 rounded-xl text-xs font-bold">+ احكي لنا</button>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 overflow-x-auto pb-1 text-xs font-bold hide-scrollbar">
+                    <span class="px-3 py-1.5 rounded-full bg-lupus-700 text-white whitespace-nowrap">💜 يومياتي مع الذئبة</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">🩷 أول تشخيص</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">💊 العلاج</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">☀️ الشمس</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">💼 الشغل والدراسة</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">👨‍👩‍👧 العلاقات والأسرة</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">🧠 صحتي النفسية</span>
+                    <span class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 whitespace-nowrap">😂 مواقف محدش يفهمها غيرنا</span>
+                </div>
+
+                <div id="forum-feed" class="space-y-4"></div>
+            </section>
+
+            <!-- ================= 7. SECTION: وصال (REAL PEER MATCHING & PROTOTYPE DISCLAIMER) ================= -->
+            <section id="view-connect" class="hidden space-y-4">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-5 rounded-3xl border border-lupus-200 shadow-sm space-y-4">
+                    <div class="border-b pb-3 flex justify-between items-center">
+                        <div>
+                            <h2 class="text-xl font-bold text-lupus-800">🫂 وصال — نظام المطابقة التجريبي</h2>
+                            <p class="text-xs text-gray-500">"تحبي تلاقي رفيقة شبه تجربتك؟"</p>
+                        </div>
+                        <button onclick="openAddPeerModal()" class="text-xs bg-lupus-700 text-white px-3 py-1.5 rounded-xl font-bold hover:bg-lupus-800">
+                            + إضافة رفيقة جديدة
+                        </button>
+                    </div>
+
+                    <div class="bg-teal-50 p-3.5 rounded-2xl border border-teal-200 text-xs text-teal-900 leading-relaxed">
+                        🔒 <strong>إشعار مهم:</strong> وصال حاليًا نسخة تجريبية، والنتائج المعروضة ليست مستخدمات حقيقيات.
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <p class="font-bold text-gray-800">حددي المعايير المفضل البحث بها:</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> لسه متشخصة</label>
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> بقالها سنين مع الذئبة</label>
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> دراسة وتأقلم</label>
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> شغل والعمل اليومي</label>
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> أمومة وتربية</label>
+                            <label class="p-2.5 bg-warmBg border rounded-xl flex items-center gap-2 cursor-pointer"><input type="checkbox" class="rounded text-lupus-600"> تجربة مشابهة للفضفضة</label>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-2 border-b border-gray-100 pb-2 text-xs font-bold pt-2">
+                        <button onclick="switchWesalTab('directory')" id="wesal-tab-btn-directory" class="px-3.5 py-1.5 rounded-xl bg-lupus-700 text-white">كل الرفيقات</button>
+                        <button onclick="switchWesalTab('requests')" id="wesal-tab-btn-requests" class="px-3.5 py-1.5 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">طلبات التواصل (<span id="wesal-req-count">0</span>)</button>
+                        <button onclick="switchWesalTab('connected')" id="wesal-tab-btn-connected" class="px-3.5 py-1.5 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">رفيقاتي المتصلات (<span id="wesal-conn-count">0</span>)</button>
+                    </div>
+
+                    <div id="wesal-tab-directory" class="space-y-3">
+                        <div id="wesal-peers-list" class="space-y-3"></div>
+                    </div>
+
+                    <div id="wesal-tab-requests" class="hidden space-y-3">
+                        <div id="wesal-requests-list" class="space-y-3"></div>
+                    </div>
+
+                    <div id="wesal-tab-connected" class="hidden space-y-3">
+                        <div id="wesal-connected-list" class="space-y-3"></div>
+                    </div>
+
+                    <button onclick="alert('قريبًا: مطابقة حقيقية بين المستخدمات')" class="w-full bg-lupus-100 text-lupus-800 py-2.5 rounded-xl font-bold text-xs hover:bg-lupus-200">
+                        قريبًا: مطابقة حقيقية بين المستخدمات 🔒
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= 8. SECTION: اتعلمي مرضك ================= -->
+            <section id="view-learn" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-5 rounded-3xl border border-lupus-200 shadow-sm space-y-5">
+                    <div class="border-b border-lupus-100 pb-3">
+                        <h2 class="text-xl font-bold text-lupus-800">مكتبة «اتعلمي مرضك» الموسعة 📚</h2>
+                        <p class="text-xs text-gray-500">7 اختبارات تفاعلية، 8 أساطير وحقائق طبية، وفيديوهات توعوية</p>
+                    </div>
+
+                    <div class="flex gap-2 border-b border-gray-100 pb-2 overflow-x-auto text-xs font-bold">
+                        <button onclick="switchLearnTab('learn')" id="learn-tab-btn-learn" class="px-4 py-2 rounded-xl bg-lupus-700 text-white">🎥 اتعلمي</button>
+                        <button onclick="switchLearnTab('quiz')" id="learn-tab-btn-quiz" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">🧠 اختبري معلوماتك</button>
+                        <button onclick="switchLearnTab('myths')" id="learn-tab-btn-myths" class="px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100">❌ أسطورة ولا حقيقة؟</button>
+                    </div>
+
+                    <div id="learn-tab-content-learn" class="space-y-3 text-xs">
+                        <div class="p-4 bg-lupus-50 rounded-2xl border border-lupus-100 space-y-1">
+                            <h4 class="font-bold text-lupus-900 text-sm">يعني إيه Lupus (الذئبة الحمراء)؟</h4>
+                            <p class="text-gray-700 leading-relaxed">الذئبة مرض مناعي ذاتي مزمن، حيث يقوم الجهاز المناعي بمهاجمة أنسجة الجسم بالخطأ. تتفاوت الأعراض من شخص لآخر وقد تمر بفترات خمول ونشاط.</p>
+                        </div>
+                        <div class="p-4 bg-lupus-50 rounded-2xl border border-lupus-100 space-y-1">
+                            <h4 class="font-bold text-lupus-900 text-sm">يعني إيه Flare (نوبة نشاط)؟</h4>
+                            <p class="text-gray-700 leading-relaxed">الفلير هو فترة يزداد فيها نشاط الأعراض. متابعة يومياتك تساعد طبيبك على ملاحظة التغيرات وإدارتها مبكراً.</p>
+                        </div>
+                    </div>
+
+                    <div id="learn-tab-content-quiz" class="hidden space-y-4">
+                        <div class="bg-lupus-50 p-4 rounded-2xl border border-lupus-200 space-y-2 text-xs">
+                            <p class="font-bold text-lupus-900">1. ما هي كمية وتكرار واقي الشمس المناسب للوقاية من تحفيز الذئبة؟</p>
+                            <div class="space-y-1.5 pt-1">
+                                <button onclick="checkQuizAnswer(this, false)" class="w-full text-right p-2.5 border rounded-xl bg-white hover:bg-lupus-100 transition">أ) قطرة واحدة صغيرة صيفاً فقط</button>
+                                <button onclick="checkQuizAnswer(this, true)" class="w-full text-right p-2.5 border rounded-xl bg-white hover:bg-lupus-100 transition">ب) مقدار إصبعين كاملين ويتجدد كل ساعتين صيفاً وشتاءً</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-lupus-50 p-4 rounded-2xl border border-lupus-200 space-y-2 text-xs">
+                            <p class="font-bold text-lupus-900">2. أي من الأغذية التالية يُحظر تناولها لأنها قد تحفز نشاط المناعة؟</p>
+                            <div class="space-y-1.5 pt-1">
+                                <button onclick="checkQuizAnswer(this, false)" class="w-full text-right p-2.5 border rounded-xl bg-white hover:bg-lupus-100 transition">أ) الأسماك المشوية</button>
+                                <button onclick="checkQuizAnswer(this, true)" class="w-full text-right p-2.5 border rounded-xl bg-white hover:bg-lupus-100 transition">ب) براعم البرسيم الحجازي (Alfalfa sprouts)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="learn-tab-content-myths" class="hidden space-y-3">
+                        <div class="bg-warmBg p-4 rounded-2xl border border-lupus-100 space-y-2 text-xs">
+                            <p class="font-bold text-lupus-900">1. «الذئبة مرض معدي ينتقل باللمس أو السلام»</p>
+                            <div class="p-2.5 bg-rose-50 border border-rose-200 text-rose-900 rounded-xl font-bold">
+                                ❌ أسطورة!
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">الذئبة مرض مناعي غير معدي إطلاقاً ولا ينقل بأي اتصال عادي أو مصافحة.</p>
+                        </div>
+
+                        <div class="bg-warmBg p-4 rounded-2xl border border-lupus-100 space-y-2 text-xs">
+                            <p class="font-bold text-lupus-900">2. «الكورتيزون دواء سام ولا يمكن إيقافه»</p>
+                            <div id="myth-card-1" class="hidden text-xs text-lupus-900 bg-lupus-50 p-3 rounded-xl border border-lupus-200">
+                                ❌ <strong>أسطورة!</strong> الكورتيزون دواء حامي للرئتين والكلى في الهجمات، ويتم تقليله بالتدريج الآمن تحت إشراف الطبيب.
+                            </div>
+                            <button onclick="document.getElementById('myth-card-1').classList.toggle('hidden')" class="text-xs text-lupus-700 font-bold underline">اكشفي الحقيقة 👈</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= USER PROFILE VIEW (حسابي) ================= -->
+            <section id="view-profile" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-5 text-xs">
+                    <div class="flex items-center gap-4 border-b pb-4">
+                        <div class="w-14 h-14 rounded-full bg-lupus-100 text-lupus-700 flex items-center justify-center font-bold text-2xl">👤</div>
+                        <div>
+                            <h3 class="font-bold text-base text-gray-800" id="profile-display-name">مريم</h3>
+                            <p class="text-gray-500">حساب محلي محفوظ بمتصفحك</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <label class="font-bold text-gray-800 block">اسم العرض المفضل:</label>
+                        <input type="text" id="profile-name-input" class="w-full border rounded-xl p-2.5 focus:ring-1 focus:ring-lupus-500" placeholder="اسمك المفضل...">
+                        <button onclick="saveProfileName()" class="bg-lupus-700 text-white px-4 py-2 rounded-xl font-bold">حفظ الاسم</button>
+                    </div>
+
+                    <div class="pt-3 border-t space-y-2">
+                        <h4 class="font-bold text-gray-800">ملفي وسجلاتي:</h4>
+                        <p class="text-gray-600">• عدد التسجيلات اليومية المحفوظة: <strong id="profile-checkins-count">0</strong></p>
+                        <p class="text-gray-600">• عدد الأدوية المسجلة: <strong id="profile-meds-count">0</strong></p>
+                    </div>
+
+                    <div class="pt-3 border-t flex flex-wrap gap-2">
+                        <button onclick="navigateTo('privacy')" class="bg-gray-100 text-gray-700 px-3 py-2 rounded-xl font-bold">إعدادات الخصوصية</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= PRIVACY VIEW (الخصوصية) ================= -->
+            <section id="view-privacy" class="hidden space-y-6">
+                <button onclick="navigateTo('home')" class="text-xs font-bold text-lupus-700 flex items-center gap-1">
+                    <i class="fa-solid fa-arrow-right"></i> الرجوع للرئيسية
+                </button>
+
+                <div class="bg-white p-6 rounded-3xl border border-lupus-200 shadow-sm space-y-4 text-xs leading-relaxed text-gray-700">
+                    <h2 class="text-lg font-bold text-lupus-800 border-b pb-2">🔐 سياسة الخصوصية والتنويه الطبي</h2>
+                    <p><strong>طبيعة النسخة التجريبية:</strong> هذه نسخة تجريبية أولية Front-End، والبيانات في هذه النسخة تُحفظ محلياً في المتصفح ولا يتم إرسالها إلى خادم.</p>
+                    <p><strong>تنويه طبي صارم:</strong> هذه المنصة لا تقدم تشخيصًا أو علاجًا طبيًا، ولا تغني عن الطبيب.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal: REAL PATIENT PROFILE -->
+    <div id="profile-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 border border-lupus-200 shadow-2xl">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="font-bold text-lupus-900 text-sm">بروفايل المريضة الحقيقي 👤</h3>
+                <button onclick="closeProfileModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">اسمك الحقيقي (أو اللقب المفضل):</label>
+                    <input type="text" id="user-name-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: سارة محمود">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">العمر:</label>
+                    <input type="number" id="user-age-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: 28">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">المحافظة / المدينة:</label>
+                    <input type="text" id="user-city-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: القاهرة / الإسكندرية">
+                </div>
+            </div>
+
+            <button onclick="saveUserProfile()" class="w-full bg-lupus-700 text-white py-2.5 rounded-xl font-bold hover:bg-lupus-800 transition">
+                حفظ بيانات بروفايلي
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: ADD REAL PEER IN WESAL -->
+    <div id="add-peer-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 border border-lupus-200 shadow-2xl">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="font-bold text-lupus-900 text-sm">إضافة رفيقة جديدة الحقيقية 🤝</h3>
+                <button onclick="closeAddPeerModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">اسم الرفيقة:</label>
+                    <input type="text" id="peer-name-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: آية أحمد">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">العمر والمحافظة:</label>
+                    <input type="text" id="peer-details-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: 30 سنة - الجيزة">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">الاهتمامات المشتركة:</label>
+                    <input type="text" id="peer-interests-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: القراءة، الأعمال اليدوية">
+                </div>
+                <div>
+                    <label class="font-bold text-gray-700 block mb-1">رقم الهاتف للتواصل المباشر:</label>
+                    <input type="text" id="peer-phone-input" class="w-full border border-gray-200 rounded-xl p-2.5 focus:ring-2 focus:ring-lupus-500 focus:outline-none bg-white" placeholder="مثال: 010xxxxxxxx">
+                </div>
+            </div>
+
+            <button onclick="saveNewRealPeer()" class="w-full bg-lupus-700 text-white py-2.5 rounded-xl font-bold hover:bg-lupus-800 transition">
+                إضافة لقائمة الرفيقات
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal: ADD LAB -->
+    <div id="add-lab-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3 text-xs border">
+            <h3 class="font-bold text-sm text-lupus-800 border-b pb-2">إضافة تحليل جديد 🧪</h3>
+            <div>
+                <label class="block mb-1 font-semibold">اسم التحليل:</label>
+                <input type="text" id="lab-name-input" placeholder="مثال: C3, C4, ANA, CBC" class="w-full border rounded-xl p-2 focus:ring-1 focus:ring-lupus-500">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">التاريخ:</label>
+                <input type="date" id="lab-date-input" class="w-full border rounded-xl p-2">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">النتيجة:</label>
+                <input type="text" id="lab-result-input" placeholder="مثال: طبيعي / 1:160" class="w-full border rounded-xl p-2">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">ملاحظات:</label>
+                <textarea id="lab-notes-input" rows="2" class="w-full border rounded-xl p-2"></textarea>
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveLabEntry()" class="flex-1 bg-lupus-700 text-white py-2 rounded-xl font-bold">حفظ التحليل</button>
+                <button onclick="closeAddLabModal()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl font-bold">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: ADD MED -->
+    <div id="add-med-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3 text-xs border">
+            <h3 class="font-bold text-sm text-lupus-800 border-b pb-2">إضافة دواء جديد 💊</h3>
+            <div>
+                <label class="block mb-1 font-semibold">اسم الدواء:</label>
+                <input type="text" id="med-name-input" placeholder="مثال: بلاكونيل / كورتيزون" class="w-full border rounded-xl p-2 focus:ring-1 focus:ring-lupus-500">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">الجرعة:</label>
+                <input type="text" id="med-dosage-input" placeholder="مثال: 200 ملجم" class="w-full border rounded-xl p-2">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">عدد المرات ووقت الاستخدام:</label>
+                <input type="text" id="med-freq-input" placeholder="مثال: مرة يومياً بعد الأكل" class="w-full border rounded-xl p-2">
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveMedEntry()" class="flex-1 bg-lupus-700 text-white py-2 rounded-xl font-bold">حفظ الدواء</button>
+                <button onclick="closeAddMedModal()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl font-bold">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: ADD FORUM POST -->
+    <div id="add-post-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-5 max-w-sm w-full space-y-3 text-xs border">
+            <h3 class="font-bold text-sm text-lupus-800 border-b pb-2">+ احكي لنا (منشور جديد)</h3>
+            <div>
+                <label class="block mb-1 font-semibold">عنوان المنشور:</label>
+                <input type="text" id="post-title-input" placeholder="عنوان حكايتك..." class="w-full border rounded-xl p-2 focus:ring-1 focus:ring-lupus-500">
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">القسم:</label>
+                <select id="post-category-input" class="w-full border rounded-xl p-2 bg-white font-semibold">
+                    <option value="💜 يومياتي مع الذئبة">💜 يومياتي مع الذئبة</option>
+                    <option value="🩷 أول تشخيص">🩷 أول تشخيص</option>
+                    <option value="💊 العلاج">💊 العلاج</option>
+                    <option value="☀️ الشمس">☀️ الشمس</option>
+                    <option value="💼 الشغل والدراسة">💼 الشغل والدراسة</option>
+                    <option value="👨‍👩‍👧 العلاقات والأسرة">👨‍👩‍👧 العلاقات والأسرة</option>
+                    <option value="🧠 صحتي النفسية">🧠 صحتي النفسية</option>
+                    <option value="😂 مواقف محدش يفهمها غيرنا">😂 مواقف محدش يفهمها غيرنا</option>
+                </select>
+            </div>
+            <div>
+                <label class="block mb-1 font-semibold">محتوى المنشور:</label>
+                <textarea id="post-content-input" rows="3" class="w-full border rounded-xl p-2" placeholder="اكتبي تجربتك بكل راحة..."></textarea>
+            </div>
+            <label class="flex items-center gap-2 font-semibold cursor-pointer">
+                <input type="checkbox" id="post-anon-input" class="rounded text-lupus-600">
+                <span>نشر بشكل مجهول (رفيقة حواء)</span>
+            </label>
+            <div class="flex gap-2 pt-2">
+                <button onclick="saveForumPost()" class="flex-1 bg-lupus-700 text-white py-2 rounded-xl font-bold">نشر المنشور</button>
+                <button onclick="closeAddPostModal()" class="bg-gray-100 text-gray-600 px-4 py-2 rounded-xl font-bold">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: System Settings -->
+    <div id="system-settings-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-md w-full space-y-4 border border-lupus-200 shadow-2xl">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="font-bold text-lupus-900 text-sm">تحديد الأجهزة المصابة المتابعة ⚙️</h3>
+                <button onclick="toggleSystemSettingsModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="system-checkboxes-list" class="space-y-2 max-h-60 overflow-y-auto pr-1 text-xs"></div>
+            <button onclick="saveSystemPreferences()" class="w-full bg-lupus-700 text-white py-2.5 rounded-xl font-bold hover:bg-lupus-800 transition">
+                حفظ التفضيلات
+            </button>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div id="emergency-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full space-y-4 text-center border-2 border-rose-200 shadow-2xl">
+            <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">🚨</div>
+            <h3 class="text-lg font-bold text-gray-800">إيه اللي بيحصل؟</h3>
+            <p class="text-xs text-gray-600 leading-relaxed">اختر نوع المساعدة المطلوب لعرض الإرشادات الرسمية المباشرة:</p>
+            
+            <div class="space-y-2 text-xs font-bold">
+                <button onclick="showEmergencyStep('physical')" class="w-full bg-rose-50 text-rose-700 border border-rose-200 py-2.5 rounded-xl hover:bg-rose-100">🩺 أعراض جسدية مقلقة</button>
+                <button onclick="showEmergencyStep('mental')" class="w-full bg-purple-50 text-purple-700 border border-purple-200 py-2.5 rounded-xl hover:bg-purple-100">🧠 أزمة نفسية أو خطر على النفس</button>
+                <button onclick="showEmergencyStep('support')" class="w-full bg-lupus-50 text-lupus-800 border border-lupus-200 py-2.5 rounded-xl hover:bg-lupus-100">💬 محتاجة دعم وتوجيه</button>
+            </div>
+
+            <div id="emergency-details" class="hidden p-3 rounded-2xl text-xs space-y-2 bg-warmBg border text-right"></div>
+
+            <button onclick="closeEmergencyModal()" class="text-xs text-gray-400 underline font-semibold mt-2">إغلاق النافذة</button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bg-white border-t border-lupus-100 fixed bottom-0 left-0 right-0 z-30 px-2 py-2 shadow-lg">
+        <div class="max-w-md mx-auto flex items-center justify-around text-center text-xs">
+            <button onclick="navigateTo('home')" class="p-1 text-lupus-700 flex flex-col items-center gap-0.5 font-bold">
+                <i class="fa-solid fa-house text-base"></i>
+                <span class="text-[10px]">الرئيسية</span>
+            </button>
+            <button onclick="navigateTo('assess')" class="p-1 text-gray-400 hover:text-lupus-700 flex flex-col items-center gap-0.5">
+                <i class="fa-solid fa-stethoscope text-base"></i>
+                <span class="text-[10px]">اطمني</span>
+            </button>
+            <button onclick="navigateTo('tracker')" class="p-1 text-gray-400 hover:text-lupus-700 flex flex-col items-center gap-0.5">
+                <i class="fa-solid fa-chart-line text-base"></i>
+                <span class="text-[10px]">أخبار صحتك</span>
+            </button>
+            <button onclick="navigateTo('chat')" class="p-1 text-gray-400 hover:text-lupus-700 flex flex-col items-center gap-0.5">
+                <i class="fa-solid fa-comments text-base"></i>
+                <span class="text-[10px]">لست وحدك</span>
+            </button>
+            <button onclick="navigateTo('profile')" class="p-1 text-gray-400 hover:text-lupus-700 flex flex-col items-center gap-0.5">
+                <i class="fa-solid fa-user text-base"></i>
+                <span class="text-[10px]">حسابي</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- FOOTER WITH COPYRIGHT -->
+    <footer class="bg-white border-t border-lupus-100 py-6 px-4 text-center text-xs text-gray-500 mt-auto">
+        <div class="max-w-4xl mx-auto space-y-3">
+            <div class="flex justify-center items-center gap-2">
+                <div class="w-6 h-6 rounded-lg overflow-hidden bg-lupus-50 border border-lupus-200 flex-shrink-0">
+                    <img src="rafeeqa-logo.png" alt="رفيقة" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/30x30/7E22CE/white?text=رفيقة';">
+                </div>
+                <span class="font-bold text-lupus-800">رفيقة 💜 — مشوارك مع الذئبة و أمراض المناعة الذاتية… مش لازم تمشيه لوحدك.</span>
+            </div>
+            <p class="text-[11px] text-gray-500 font-semibold">
+                © رفيقة | تصميم وتطوير: <span class="text-lupus-800 font-bold">Nour Mohamed</span> | جميع الحقوق محفوظة
+            </p>
+            <p class="text-[10px] text-gray-400 max-w-md mx-auto leading-relaxed">
+                رفيقة — نسخة تجريبية أولية Front-End. هذه المنصة لا تقدم تشخيصًا أو علاجًا طبيًا، ولا تغني عن الطبيب.
+            </p>
+        </div>
+    </footer>
+
+    <!-- EXHAUSTIVE SYSTEM ENGINE & LOGIC -->
+    <script>
+        const EXHAUSTIVE_SYSTEMS = [
+            { id: 'skin', name: '🌸 الجلد والشعر والبشرة', selected: true, symptoms: ['طفح الفراشة للوجنتين', 'طفح قرصي داكن', 'حساسية شمس الصيف', 'تساقط شعر شديد', 'تقرحات الفم/الأنف', 'التهاب الأوعية الجلدي'] },
+            { id: 'joints', name: '🦴 المفاصل والعضلات', selected: true, symptoms: ['ألم وتورم المفاصل', 'تيبس صباحي أكتر من 30 دقيقة', 'ألم العضلات العام', 'ضعف العضلات'] },
+            { id: 'kidneys', name: '🫘 الكلى والجهاز البولي', selected: true, symptoms: ['تورم القدمين/الكاحلين', 'رغوة بالبول (زلال)', 'تغير لون البول', 'ارتفاع ضغط الدم'] },
+            { id: 'neuro', name: '🧠 الجهاز العصبي والنفسي', selected: true, symptoms: ['الضبابية الذهنية (Lupus Fog)', 'صداع مستمر', 'تنميل الأطراف', 'اضطرابات النوم'] },
+            { id: 'lungs', name: '🫁 الرئتين والتنفس', selected: false, symptoms: ['ألم بالصدر عند النفس العميق', 'ضيق تنفس', 'كحة جافة'] },
+            { id: 'cardio', name: '🫀 القلب والأوعية', selected: false, symptoms: ['خفقان القلب', 'ظاهرة رينود (تغير لون الأصابع)', 'كدمات غير مفسرة'] },
+            { id: 'blood', name: '🩸 الدم والمناعة والحرارة', selected: false, symptoms: ['إرهاق شديد', 'سخونية/حرارة غير مبررة', 'انتفاخ العقد الليمفاوية', 'شحوب الأنيميا'] },
+            { id: 'gi', name: '🪵 الجهاز الهضمي والعيون', selected: false, symptoms: ['جفاف العيون والفم (سوجرين)', 'غثيان وفقدان شهية', 'ألم غير مفسر بالبطن'] }
+        ];
+
+        const INITIAL_FORUM_POSTS = [
+            {
+                id: 'post_1',
+                author: 'نوران م.',
+                isAnon: true,
+                time: 'منذ ساعتين',
+                content: 'بنات مين جربت واقي شمس كويس للبشرة الحساسة مع الذئبة وما بيجيرش؟',
+                likes: 12,
+                liked: false,
+                comments: [
+                    { author: 'سارة م.', isAnon: false, content: 'جربي واقي شمس يرياج أو لاروش بوزيه جيل كريم ممتاز جداً وما بيجيرش 🌸' },
+                    { author: 'رفيقة حواء', isAnon: true, content: 'مهم جداً تجدديده كل ساعتين لو طالعة في الشمس!' }
+                ]
+            }
+        ];
+
+        let userProfile = JSON.parse(localStorage.getItem('rafeeqa_real_profile')) || null;
+        let userSystems = JSON.parse(localStorage.getItem('rafeeqa_systems')) || EXHAUSTIVE_SYSTEMS;
+        let dailyLogs = JSON.parse(localStorage.getItem('rafeeqa_logs')) || [];
+        let labsList = JSON.parse(localStorage.getItem('rafeeqa_labs')) || [];
+        let medsList = JSON.parse(localStorage.getItem('rafeeqa_meds')) || [];
+        let wesalPeers = JSON.parse(localStorage.getItem('rafeeqa_wesal_real_peers')) || [];
+        let forumPosts = JSON.parse(localStorage.getItem('rafeeqa_forum_posts')) || INITIAL_FORUM_POSTS;
+        let doctorQuestions = localStorage.getItem('rafeeqa_doc_questions') || '';
+        let currentSleepQuality = 'متوسط';
+        let currentMoodQuality = 'عادي';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!userProfile) {
+                openProfileModal();
+            } else {
+                updateUIProfileHeader();
+            }
+            renderSystemChipsAndSymptoms();
+            updateDoctorReportDynamic();
+            renderWesalDirectory();
+            renderForumFeed();
+            renderLabs();
+            renderMeds();
+            renderDashboard();
+            document.getElementById('doctor-custom-questions').value = doctorQuestions;
+        });
+
+        function startJourney() {
+            document.getElementById('splash-screen').classList.add('hidden');
+        }
+
+        function updateUIProfileHeader() {
+            const name = userProfile ? userProfile.name : 'محاربة الذئبة';
+            document.getElementById('nav-user-name').innerText = name;
+            document.getElementById('home-user-name').innerText = name;
+            document.getElementById('profile-display-name').innerText = name;
+            if (userProfile) {
+                document.getElementById('user-name-input').value = userProfile.name || '';
+                document.getElementById('user-age-input').value = userProfile.age || '';
+                document.getElementById('user-city-input').value = userProfile.city || '';
+                document.getElementById('profile-name-input').value = userProfile.name || '';
+            }
+            document.getElementById('saved-logs-count').innerText = `${dailyLogs.length} سجل محلي`;
+            document.getElementById('profile-checkins-count').innerText = dailyLogs.length;
+            document.getElementById('profile-meds-count').innerText = medsList.length;
+        }
+
+        function openProfileModal() { document.getElementById('profile-modal').classList.remove('hidden'); }
+        function closeProfileModal() { document.getElementById('profile-modal').classList.add('hidden'); }
+
+        function saveUserProfile() {
+            const name = document.getElementById('user-name-input').value.trim() || 'محاربة الذئبة';
+            const age = parseInt(document.getElementById('user-age-input').value) || 28;
+            const city = document.getElementById('user-city-input').value || 'القاهرة';
+
+            userProfile = { name, age, city };
+            localStorage.setItem('rafeeqa_real_profile', JSON.stringify(userProfile));
+            updateUIProfileHeader();
+            closeProfileModal();
+            alert('تم حفظ بيانات بروفايلك بنجاح 🌸');
+        }
+
+        function saveProfileName() {
+            const name = document.getElementById('profile-name-input').value.trim();
+            if (name) {
+                userProfile = { ...(userProfile || {}), name };
+                localStorage.setItem('rafeeqa_real_profile', JSON.stringify(userProfile));
+                updateUIProfileHeader();
+                alert('تم حفظ الاسم المفضل 💜');
+            }
+        }
+
+        function selectSleepQuality(val, btn) {
+            currentSleepQuality = val;
+            document.querySelectorAll('.sleep-opt-btn').forEach(b => {
+                b.classList.remove('bg-lupus-700', 'text-white', 'border-lupus-700');
+                b.classList.add('bg-white', 'text-gray-800');
+            });
+            btn.classList.remove('bg-white', 'text-gray-800');
+            btn.classList.add('bg-lupus-700', 'text-white', 'border-lupus-700');
+        }
+
+        function selectMoodQuality(val, btn) {
+            currentMoodQuality = val;
+            document.querySelectorAll('.mood-opt-btn').forEach(b => {
+                b.classList.remove('bg-lupus-700', 'text-white', 'border-lupus-700');
+                b.classList.add('bg-white', 'text-gray-800');
+            });
+            btn.classList.remove('bg-white', 'text-gray-800');
+            btn.classList.add('bg-lupus-700', 'text-white', 'border-lupus-700');
+        }
+
+        function renderSystemChipsAndSymptoms() {
+            const chipsBar = document.getElementById('system-chips-bar');
+            const container = document.getElementById('comprehensive-symptoms-container');
+            const modalList = document.getElementById('system-checkboxes-list');
+
+            chipsBar.innerHTML = '';
+            container.innerHTML = '';
+            modalList.innerHTML = '';
+
+            userSystems.forEach(sys => {
+                const modalItem = document.createElement('label');
+                modalItem.className = 'flex items-center gap-3 p-2 bg-gray-50 rounded-xl cursor-pointer hover:bg-lupus-50';
+                modalItem.innerHTML = `
+                    <input type="checkbox" value="${sys.id}" ${sys.selected ? 'checked' : ''} class="w-4 h-4 text-lupus-700 rounded sys-modal-cb">
+                    <span class="font-bold text-gray-800">${sys.name}</span>
+                `;
+                modalList.appendChild(modalItem);
+
+                if (sys.selected) {
+                    const chip = document.createElement('span');
+                    chip.className = 'bg-lupus-100 text-lupus-800 px-3 py-1 rounded-full font-bold border border-lupus-200';
+                    chip.innerText = sys.name;
+                    chipsBar.appendChild(chip);
+
+                    const block = document.createElement('div');
+                    block.className = 'space-y-2 bg-warmBg/60 p-4 rounded-2xl border border-lupus-100';
+                    let symptomsHTML = `<span class="text-xs font-bold text-lupus-900 block mb-2">${sys.name}:</span><div class="flex flex-wrap gap-2 text-xs">`;
+                    sys.symptoms.forEach(sym => {
+                        symptomsHTML += `<button type="button" onclick="toggleTag(this)" class="px-3 py-1.5 rounded-full border border-gray-200 bg-white text-gray-700 hover:border-lupus-400 transition symptom-tag-btn">${sym}</button>`;
+                    });
+                    symptomsHTML += `</div>`;
+                    block.innerHTML = symptomsHTML;
+                    container.appendChild(block);
+                }
+            });
+        }
+
+        function toggleSystemSettingsModal() { document.getElementById('system-settings-modal').classList.toggle('hidden'); }
+
+        function saveSystemPreferences() {
+            const checkboxes = document.querySelectorAll('.sys-modal-cb');
+            checkboxes.forEach(cb => {
+                const sys = userSystems.find(s => s.id === cb.value);
+                if (sys) sys.selected = cb.checked;
+            });
+            localStorage.setItem('rafeeqa_systems', JSON.stringify(userSystems));
+            renderSystemChipsAndSymptoms();
+            toggleSystemSettingsModal();
+            alert('تم حفظ تفضيلات الأجهزة المتابعة 🌸');
+        }
+
+        function toggleTag(btn) {
+            btn.classList.toggle('bg-lupus-700');
+            btn.classList.toggle('text-white');
+            btn.classList.toggle('border-lupus-700');
+            btn.classList.toggle('symptom-selected');
+        }
+
+        function saveDailyLogPersistent() {
+            const fatigue = parseInt(document.getElementById('fatigue-slider').value);
+            const pain = parseInt(document.getElementById('pain-slider').value);
+            const sleep = currentSleepQuality;
+            const mood = currentMoodQuality;
+            const notes = document.getElementById('free-daily-notes').value.trim();
+            const medChanged = document.getElementById('med-change-cb').checked;
+            const selectedButtons = document.querySelectorAll('.symptom-tag-btn.symptom-selected');
+            const symptoms = Array.from(selectedButtons).map(b => b.innerText);
+            const today = new Date().toISOString().split('T')[0];
+
+            dailyLogs.unshift({ date: today, fatigue, pain, sleep, mood, symptoms, medChanged, notes });
+            localStorage.setItem('rafeeqa_logs', JSON.stringify(dailyLogs));
+
+            document.getElementById('free-daily-notes').value = '';
+            document.querySelectorAll('.symptom-tag-btn.symptom-selected').forEach(b => toggleTag(b));
+
+            updateUIProfileHeader();
+            updateDoctorReportDynamic();
+            renderDashboard();
+            alert('تم حفظ يومياتك وأعراضك الحقيقية بنجاح! 🌸');
+        }
+
+        function renderDashboard() {
+            const container = document.getElementById('dashboard-content');
+            if (!container) return;
+
+            if (dailyLogs.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-6 text-gray-500 space-y-2">
+                        <div class="text-3xl">📊</div>
+                        <p class="font-bold">لسه مفيش بيانات كفاية. ابدئي تسجيل حالتك النهارده 💜</p>
+                    </div>`;
+                return;
+            }
+
+            const latest = dailyLogs[0];
+            container.innerHTML = `
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+                    <div class="bg-lupus-50 p-3 rounded-2xl border"><span class="text-gray-500 text-[10px] block">الإرهاق</span><strong class="text-lupus-800 text-sm">${latest.fatigue} / 10</strong></div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border"><span class="text-gray-500 text-[10px] block">الألم</span><strong class="text-lupus-800 text-sm">${latest.pain} / 10</strong></div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border"><span class="text-gray-500 text-[10px] block">النوم</span><strong class="text-lupus-800 text-sm">${latest.sleep || 'متوسط'}</strong></div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border"><span class="text-gray-500 text-[10px] block">المزاج</span><strong class="text-lupus-800 text-sm">${latest.mood || 'عادي'}</strong></div>
+                </div>
+
+                <div class="bg-warmBg p-3 rounded-2xl border space-y-1">
+                    <p class="font-bold text-gray-800">• الأعراض المسجلة مؤخراً: <span class="text-lupus-700">${latest.symptoms.join(', ') || 'لا توجد'}</span></p>
+                    ${latest.notes ? `<p class="text-gray-600">• الملاحظات: "${latest.notes}"</p>` : ''}
+                </div>
+
+                <div class="bg-amber-50 p-3 rounded-2xl border border-amber-200 text-amber-900 leading-relaxed">
+                    💡 <strong>ملاحظة رفيقة:</strong> لاحظنا تغيرًا عن نمطك المعتاد. قد يكون من المفيد متابعة الأعراض والتواصل مع طبيبك إذا استمرت أو زادت.
+                </div>`;
+        }
+
+        function switchTrackerSubTab(subKey) {
+            ['checkin', 'dashboard', 'labs', 'meds', 'doctor-summary'].forEach(key => {
+                const el = document.getElementById(`tracker-subtab-${key}`);
+                const btn = document.getElementById(`tracker-subtab-btn-${key}`);
+                if (el) el.classList.add('hidden');
+                if (btn) btn.className = "px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100";
+            });
+            document.getElementById(`tracker-subtab-${subKey}`).classList.remove('hidden');
+            document.getElementById(`tracker-subtab-btn-${subKey}`).className = "px-4 py-2 rounded-xl bg-lupus-700 text-white font-bold";
+
+            if (subKey === 'dashboard') renderDashboard();
+            if (subKey === 'doctor-summary') updateDoctorReportDynamic();
+        }
+
+        // LABS FUNCTIONS
+        function openAddLabModal() { document.getElementById('add-lab-modal').classList.remove('hidden'); }
+        function closeAddLabModal() { document.getElementById('add-lab-modal').classList.add('hidden'); }
+
+        function saveLabEntry() {
+            const name = document.getElementById('lab-name-input').value.trim();
+            const date = document.getElementById('lab-date-input').value;
+            const result = document.getElementById('lab-result-input').value.trim();
+            const notes = document.getElementById('lab-notes-input').value.trim();
+
+            if (!name) { alert('برجاء كتابة اسم التحليل'); return; }
+
+            labsList.unshift({ id: Date.now(), name, date, result, notes });
+            localStorage.setItem('rafeeqa_labs', JSON.stringify(labsList));
+            closeAddLabModal();
+            renderLabs();
+            updateDoctorReportDynamic();
+        }
+
+        function renderLabs() {
+            const container = document.getElementById('labs-list');
+            if (!container) return;
+
+            if (labsList.length === 0) {
+                container.innerHTML = `<p class="text-gray-400 text-center py-4">لم تقمي بإضافة تحاليل بعد.</p>`;
+                return;
+            }
+
+            container.innerHTML = labsList.map(lab => `
+                <div class="p-3 bg-warmBg border rounded-2xl flex justify-between items-center text-xs">
+                    <div>
+                        <strong class="text-lupus-900 block">${lab.name}</strong>
+                        <span class="text-gray-500 text-[10px]">${lab.date || 'بدون تاريخ'} — النتيجة: ${lab.result}</span>
+                    </div>
+                    ${lab.notes ? `<span class="text-gray-600 text-[10px]">"${lab.notes}"</span>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // MEDS FUNCTIONS
+        function openAddMedModal() { document.getElementById('add-med-modal').classList.remove('hidden'); }
+        function closeAddMedModal() { document.getElementById('add-med-modal').classList.add('hidden'); }
+
+        function saveMedEntry() {
+            const name = document.getElementById('med-name-input').value.trim();
+            const dosage = document.getElementById('med-dosage-input').value.trim();
+            const freq = document.getElementById('med-freq-input').value.trim();
+
+            if (!name) { alert('برجاء كتابة اسم الدواء'); return; }
+
+            medsList.unshift({ id: Date.now(), name, dosage, freq, takenToday: false });
+            localStorage.setItem('rafeeqa_meds', JSON.stringify(medsList));
+            closeAddMedModal();
+            renderMeds();
+            updateUIProfileHeader();
+            updateDoctorReportDynamic();
+        }
+
+        function toggleMedTaken(medId) {
+            const med = medsList.find(m => m.id === medId);
+            if (med) {
+                med.takenToday = !med.takenToday;
+                localStorage.setItem('rafeeqa_meds', JSON.stringify(medsList));
+                renderMeds();
+            }
+        }
+
+        function renderMeds() {
+            const container = document.getElementById('meds-list');
+            if (!container) return;
+
+            if (medsList.length === 0) {
+                container.innerHTML = `<p class="text-gray-400 text-center py-4">لم تقمي بإضافة أدوية بعد.</p>`;
+                return;
+            }
+
+            container.innerHTML = medsList.map(med => `
+                <div class="p-3 bg-warmBg border rounded-2xl flex justify-between items-center text-xs">
+                    <div>
+                        <strong class="text-lupus-900 block">${med.name} (${med.dosage})</strong>
+                        <span class="text-gray-500 text-[10px]">${med.freq}</span>
+                    </div>
+                    <button onclick="toggleMedTaken(${med.id})" class="px-3 py-1 rounded-xl font-bold border ${med.takenToday ? 'bg-emerald-100 text-emerald-800 border-emerald-300' : 'bg-gray-100 text-gray-600'}">
+                        ${med.takenToday ? '✅ أخذت الدواء' : '❌ نسيت'}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function updateDoctorReportDynamic() {
+            const reportContainers = [document.getElementById('dynamic-report-content'), document.getElementById('dynamic-report-content-view')];
+            
+            reportContainers.forEach(container => {
+                if (!container) return;
+
+                if (dailyLogs.length === 0) {
+                    container.innerHTML = `
+                        <div class="p-6 bg-warmBg rounded-2xl text-center space-y-2 border border-lupus-100">
+                            <div class="text-3xl">🌸</div>
+                            <h4 class="font-bold text-xs text-lupus-900">تقريرك فاضي حالياً يا حبيبتي</h4>
+                            <p class="text-[11px] text-gray-500 leading-relaxed max-w-sm mx-auto">
+                                أول ما تسجلي يومياتك في قسم «أخبار صحتك»، رفيقة هتبدأ تجمعلك التقرير هنا تلقائياً لآخر 3 أشهر عشان تجهزي لزيارة دكتور الروماتيزم.
+                            </p>
+                        </div>`;
+                    return;
+                }
+
+                let totalFatigue = 0, totalPain = 0, symptomFreq = {}, notesList = [];
+                dailyLogs.forEach(log => {
+                    totalFatigue += log.fatigue;
+                    totalPain += log.pain;
+                    if (log.notes) notesList.push({ date: log.date, note: log.notes });
+                    log.symptoms.forEach(s => { symptomFreq[s] = (symptomFreq[s] || 0) + 1; });
+                });
+
+                const avgFatigue = (totalFatigue / dailyLogs.length).toFixed(1);
+                const avgPain = (totalPain / dailyLogs.length).toFixed(1);
+
+                let topSymptomsHTML = '';
+                for (let [sym, count] of Object.entries(symptomFreq)) {
+                    topSymptomsHTML += `<li>• ${sym} (تكرر ${count} مرات)</li>`;
+                }
+
+                let notesHTML = '';
+                notesList.slice(0, 5).forEach(n => {
+                    notesHTML += `<li>• <span class="text-gray-400">[${n.date}]:</span> "${n.note}"</li>`;
+                });
+
+                const patientName = userProfile ? userProfile.name : 'محاربة الذئبة';
+
+                container.innerHTML = `
+                    <div class="border-b border-lupus-200 pb-3 mb-3 flex justify-between items-center">
+                        <div>
+                            <h3 class="font-bold text-lupus-900 text-sm">تقرير المتابعة الطبية لزيارة الطبيب 💜</h3>
+                            <p class="text-[11px] text-gray-500">منصة رفيقة - ملخص حالة المريضة: <strong>${patientName}</strong></p>
+                        </div>
+                        <span class="text-[10px] text-lupus-700 bg-lupus-100 px-2.5 py-1 rounded-full font-bold">${new Date().toISOString().split('T')[0]}</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-[11px] mb-3">
+                        <div class="bg-lupus-50 p-2.5 rounded-xl border border-lupus-100">
+                            <span class="text-gray-500 block">إجمالي أيام التسجيل:</span>
+                            <strong class="text-lupus-900 font-bold">${dailyLogs.length} يوم</strong>
+                        </div>
+                        <div class="bg-lupus-50 p-2.5 rounded-xl border border-lupus-100">
+                            <span class="text-gray-500 block">متوسط الطاقة والألم:</span>
+                            <strong class="text-lupus-900 font-bold">طاقة: ${avgFatigue}/10 | ألم: ${avgPain}/10</strong>
+                        </div>
+                    </div>
+
+                    <div class="bg-lupus-50 p-3 rounded-2xl border border-lupus-100 space-y-1">
+                        <h4 class="font-bold text-lupus-900">🌸 الأعراض الأكثر تكراراً المسجلة:</h4>
+                        <ul class="list-none space-y-1 text-gray-700 pr-2">${topSymptomsHTML || '<li>• لم يتم تسجيل أعراض محددة.</li>'}</ul>
+                    </div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border border-lupus-100 space-y-1">
+                        <h4 class="font-bold text-lupus-900">💊 الأدوية المسجلة:</h4>
+                        ${medsList.map(m => `<p>• ${m.name} (${m.dosage}) - ${m.freq}</p>`).join('') || '<p class="text-gray-400">لم يتم تسجيل أدوية.</p>'}
+                    </div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border border-lupus-100 space-y-1">
+                        <h4 class="font-bold text-lupus-900">🧪 التحاليل المسجلة:</h4>
+                        ${labsList.map(l => `<p>• ${l.name}: ${l.result} (${l.date})</p>`).join('') || '<p class="text-gray-400">لم يتم تسجيل تحاليل.</p>'}
+                    </div>
+                    <div class="bg-lupus-50 p-3 rounded-2xl border border-lupus-100 space-y-1">
+                        <h4 class="font-bold text-lupus-900">📝 الملاحظات الحرّة المدونة:</h4>
+                        <ul class="list-none space-y-1 text-gray-700 pr-2">${notesHTML || '<li>• لا توجد ملاحظات حرة مضافة.</li>'}</ul>
+                    </div>
+
+                    <p class="text-[10px] text-gray-400 text-center pt-2">تم إنشاء هذا التقرير أوتوماتيكياً من منصة «رفيقة» لدعم التواصل الإيجابي مع الطبيب المتابع.</p>
+                `;
+            });
+        }
+
+        // REAL CLIENT-SIDE PDF DOWNLOAD ENGINE
+        function downloadDoctorReportPDF() {
+            const element = document.getElementById('printable-doctor-report');
+            if (!element) return;
+
+            const opt = {
+                margin:       [0.4, 0.4, 0.4, 0.4],
+                filename:     `تقرير_متابعة_الذئبة_رفيقة_${new Date().toISOString().split('T')[0]}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function saveDoctorQuestions() {
+            localStorage.setItem('rafeeqa_doc_questions', document.getElementById('doctor-custom-questions').value);
+        }
+
+        function calculateACRScreening() {
+            const checkboxes = document.querySelectorAll('.acr-cb');
+            let acrScore = 0;
+            checkboxes.forEach(cb => { if (cb.checked) acrScore++; });
+
+            const gender = document.getElementById('assess-gender').value;
+            const age = parseInt(document.getElementById('assess-age').value) || 28;
+            const height = parseFloat(document.getElementById('assess-height').value) || 165;
+            const weight = parseFloat(document.getElementById('assess-weight').value) || 63;
+            const familyHistory = document.getElementById('assess-family-history').value;
+
+            const bmi = (weight / ((height/100) * (height/100))).toFixed(1);
+
+            document.getElementById('summary-demo').innerText = `${gender === 'female' ? 'أنثى' : 'ذكر'}، ${age} سنة، مؤشر كتلة الجسم (BMI): ${bmi}`;
+            document.getElementById('summary-family').innerText = familyHistory === 'yes' ? 'يوجد أقارب مصابون بأمراض مناعية' : 'لا يوجد تاريخ عائلي معروف';
+            document.getElementById('summary-score').innerText = `${acrScore} مؤشرات ملاحظة`;
+
+            const badge = document.getElementById('result-badge');
+            const textBody = document.getElementById('result-text-body');
+
+            if (acrScore >= 3) {
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300";
+                badge.innerText = "🔴 توجد أعراض تستدعي تقييمًا طبيًا عاجلاً";
+                textBody.innerHTML = `
+                    <p class="text-rose-900 bg-rose-50 p-3 rounded-xl border border-rose-200">
+                        <strong>📌 التوجيه الاسترشادي:</strong> تم تسجيل <strong>${acrScore} مؤشرات متطابقة</strong>. ترجح هذه النتيجة أهمية زيارة أخصائي روماتيزم ومناعة للتقييم التأكيدي والتحاليل الطبية.
+                    </p>`;
+            } else if (acrScore >= 1) {
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300";
+                badge.innerText = "🟡 قد يكون من المناسب مراجعة طبيب";
+                textBody.innerHTML = `
+                    <p class="text-amber-900 bg-amber-50 p-3 rounded-xl border border-amber-200">
+                        <strong>📌 التوجيه الاسترشادي:</strong> تم تسجيل <strong>${acrScore} مؤشرات مبدئية</strong>. يفضل تسجيل الأعراض في قسم «أخبار صحتك» ومناقشتها مع طبيبك في الزيارة القادمة.
+                    </p>`;
+            } else {
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                badge.innerText = "🟢 مؤشرات قليلة حاليًا";
+                textBody.innerHTML = `
+                    <p class="text-emerald-900 bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                        <strong>📌 التوجيه الاسترشادي:</strong> المؤشرات قليلة جداً ولا تدعو للقلق. واصلي الراحة وحماية البشرة والتواصل مع طبيبك المتابع.
+                    </p>`;
+            }
+
+            document.getElementById('assess-result').classList.remove('hidden');
+            document.getElementById('assess-result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // SMART CHATBOT ENGINE
+        function sendChatMessage() {
+            const input = document.getElementById('chat-input');
+            const container = document.getElementById('chat-messages');
+            const text = input.value.trim();
+            if(!text) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = "bg-lupus-700 text-white p-3 rounded-2xl rounded-tl-none max-w-[85%] mr-auto shadow-sm";
+            userMsg.innerText = text;
+            container.appendChild(userMsg);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = "bg-white p-3 rounded-2xl rounded-tr-none border border-gray-100 max-w-[85%] text-gray-700 shadow-sm leading-relaxed";
+                botMsg.innerHTML = generateSmartChatResponse(text);
+                container.appendChild(botMsg);
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
+
+        function sendQuickChat(promptText) {
+            document.getElementById('chat-input').value = promptText;
+            sendChatMessage();
+        }
+
+        function generateSmartChatResponse(input) {
+            const text = input.toLowerCase();
+
+            const crisisKeywords = ['انتحار', 'أموت', 'مش قادرة أعيش', 'أنهي حياتي', 'أخلص من حياتي', 'أذى نفسي'];
+            if (crisisKeywords.some(kw => text.includes(kw))) {
+                showEmergencyStep('mental');
+                openEmergencyModal();
+                return `حبيبتي، سلامتك وأمانك هما أهم حاجة عندنا في رفيقة 🌸. أنا حاسة بيكي وبثقل المشاعر دي، بس أرجوكي متكونيش لوحدك. تواصلي فوراً مع خط الدعم النفسي المباشر المجاني في مصر: <strong class="text-rose-600">16423</strong> أو اتصلي بـ <strong class="text-rose-600">123</strong>.`;
+            }
+
+            if (text.includes('وجع') || text.includes('ألم') || text.includes('مفاصل') || text.includes('ورم') || text.includes('ركبتي')) {
+                return `أنا حسة بيكي يا حبيبتي.. ألم المفاصل والورم بيكون مجهد جداً للنفسية والجسم. 🌸 جربي تعملي كمادات دافية هادية على المفصل، وارتاحي بدون ما تضغطي على نفسك. متنسيش تسجلي شدة الألم دي في قسم «أخبار صحتك» عشان دكتورك يلاحظ التغير دة في الزيارة الجاية.`;
+            }
+
+            if (text.includes('تعب') || text.includes('إرهاق') || text.includes('كسل') || text.includes('مش قادرة أقوم')) {
+                return `حقك ترتاحي وتوقفي أي حاجة في إيديكي دلوقتي يا حبيبتي 🌸. الإرهاق مع الذئبة مش كسل، دة إشارة من جسمك إنه محتاج شحن وراحة. خدي نفس عميق وافتكري إن يومك مش لازم يخلص فيه كل حاجة.`;
+            }
+
+            if (text.includes('دوا') || text.includes('كورتيزون') || text.includes('بلاكونيل') || text.includes('علاج') || text.includes('خايفة')) {
+                return `طبيعي جداً تحسي بخوف من الأدوية أو الكورتيزون يا حبيبتي. 🌸 بس افتكري إن الكورتيزون دواء حامي للرئتين والكلى في وقته، وبلاكونيل بيحمي المناعة. حطي كل أسئلتك عن الجرعات في قسم «جهزي زيارتي» عشان تناقشيها مع دكتورك وتطمني تماماً.`;
+            }
+
+            return `أنا سمعاكي ومقدرة كل كلمة بتقوليها يا حبيبتي 💜 (رفيقة أداة دعم وليست طبيباً أو معالجاً نفسياً). التعامل مع الذئبة محتاج مننا صبر ورحمة بنفسنا. تحبي تسجلي المشاعر دي في يومياتك النهاردة؟`;
+        }
+
+        // FORUM ENGINE
+        function renderForumFeed() {
+            const feed = document.getElementById('forum-feed');
+            feed.innerHTML = '';
+
+            forumPosts.forEach(post => {
+                const postCard = document.createElement('div');
+                postCard.className = "bg-white p-4 rounded-2xl border border-lupus-100 shadow-sm space-y-3 text-xs";
+                
+                let commentsHTML = '';
+                post.comments.forEach(c => {
+                    commentsHTML += `
+                        <div class="bg-warmBg/70 p-2.5 rounded-xl border border-gray-100 text-[11px] space-y-0.5">
+                            <span class="font-bold text-lupus-900">${c.isAnon ? 'رفيقة حواء (مجهول)' : c.author}</span>
+                            <p class="text-gray-700">${c.content}</p>
+                        </div>
+                    `;
+                });
+
+                postCard.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-full bg-lupus-100 text-lupus-700 flex items-center justify-center font-bold">${post.isAnon ? 'ر' : post.author[0]}</div>
+                            <span class="font-bold text-gray-800">${post.isAnon ? 'رفيقة حواء (مجهول)' : post.author}</span>
+                            <span class="text-[10px] text-gray-400">• ${post.time}</span>
+                        </div>
+                        <button onclick="alert('تم استلام البلاغ لمراجعة المحتوى لضمان سلامة المجتمع')" class="text-gray-400 hover:text-rose-500 text-[10px]"><i class="fa-solid fa-flag"></i> إبلاغ</button>
+                    </div>
+
+                    <p class="text-gray-800 leading-relaxed font-semibold">${post.content}</p>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-gray-50 text-[11px] text-gray-500">
+                        <button onclick="toggleLikePost('${post.id}')" class="hover:text-lupus-700 flex items-center gap-1 font-bold ${post.liked ? 'text-lupus-700 font-extrabold' : ''}">
+                            <i class="${post.liked ? 'fa-solid' : 'fa-regular'} fa-heart text-lupus-600"></i>
+                            <span>دعم 💜 (${post.likes})</span>
+                        </button>
+                        <button onclick="toggleCommentsSection('${post.id}')" class="hover:text-lupus-700 flex items-center gap-1 font-bold">
+                            <i class="fa-regular fa-comment text-lupus-600"></i>
+                            <span>التعليقات (${post.comments.length})</span>
+                        </button>
+                    </div>
+
+                    <div id="comments-box-${post.id}" class="hidden space-y-2 pt-2 border-t border-lupus-50 bg-lupus-50/40 p-3 rounded-xl">
+                        <div class="space-y-2">
+                            ${commentsHTML || '<p class="text-gray-400 text-[10px]">لا توجد تعليقات بعد.. كوني الأولى بالرد والمساندة!</p>'}
+                        </div>
+                        <div class="flex gap-2 pt-1">
+                            <input type="text" id="comment-input-${post.id}" placeholder="اكتبي تعليقك الداعم هنا..." class="flex-1 border rounded-xl px-3 py-1.5 text-xs focus:outline-none focus:border-lupus-500">
+                            <button onclick="addCommentToPost('${post.id}')" class="bg-lupus-700 text-white px-3 py-1.5 rounded-xl font-bold">رد</button>
+                        </div>
+                    </div>
+                `;
+                feed.appendChild(postCard);
+            });
+        }
+
+        function openAddPostModal() { document.getElementById('add-post-modal').classList.remove('hidden'); }
+        function closeAddPostModal() { document.getElementById('add-post-modal').classList.add('hidden'); }
+
+        function saveForumPost() {
+            const title = document.getElementById('post-title-input').value.trim();
+            const category = document.getElementById('post-category-input').value;
+            const content = document.getElementById('post-content-input').value.trim();
+            const isAnon = document.getElementById('post-anon-input').checked;
+
+            if (!title || !content) { alert('برجاء كتابة العنوان والمحتوى'); return; }
+
+            const name = (userProfile && userProfile.name) ? userProfile.name : 'مريضة رفيقة';
+            const newPost = {
+                id: 'post_' + Date.now(),
+                author: name,
+                isAnon: isAnon,
+                time: 'الآن',
+                content: `${title}\n${content}`,
+                likes: 1,
+                liked: false,
+                comments: []
+            };
+
+            forumPosts.unshift(newPost);
+            localStorage.setItem('rafeeqa_forum_posts', JSON.stringify(forumPosts));
+            closeAddPostModal();
+            renderForumFeed();
+            alert('تم نشر مشاركتك بنجاح في مجتمع سوا 💜');
+        }
+
+        function toggleLikePost(postId) {
+            const post = forumPosts.find(p => p.id === postId);
+            if (post) {
+                post.liked = !post.liked;
+                post.likes += post.liked ? 1 : -1;
+                localStorage.setItem('rafeeqa_forum_posts', JSON.stringify(forumPosts));
+                renderForumFeed();
+            }
+        }
+
+        function toggleCommentsSection(postId) {
+            const box = document.getElementById(`comments-box-${postId}`);
+            if (box) box.classList.toggle('hidden');
+        }
+
+        function addCommentToPost(postId) {
+            const input = document.getElementById(`comment-input-${postId}`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const post = forumPosts.find(p => p.id === postId);
+            if (post) {
+                const name = (userProfile && userProfile.name) ? userProfile.name : 'مريضة رفيقة';
+                post.comments.push({ author: name, isAnon: false, content: text });
+                localStorage.setItem('rafeeqa_forum_posts', JSON.stringify(forumPosts));
+                renderForumFeed();
+                document.getElementById(`comments-box-${postId}`).classList.remove('hidden');
+            }
+        }
+
+        // WESAL PEERS ENGINE
+        function renderWesalDirectory() {
+            const peersList = document.getElementById('wesal-peers-list');
+            const reqList = document.getElementById('wesal-requests-list');
+            const connList = document.getElementById('wesal-connected-list');
+
+            let reqCount = 0, connCount = 0;
+            peersList.innerHTML = ''; reqList.innerHTML = ''; connList.innerHTML = '';
+
+            if (wesalPeers.length === 0) {
+                peersList.innerHTML = `
+                    <div class="p-6 bg-warmBg rounded-2xl text-center space-y-2 border border-lupus-100">
+                        <div class="text-3xl">🤝</div>
+                        <h4 class="font-bold text-xs text-lupus-900">لا توجد رفيقات مضافة في حسابك حتى الآن</h4>
+                        <p class="text-[11px] text-gray-500 leading-relaxed max-w-sm mx-auto">
+                            يمكنك إضافة رفيقاتك الحقيقيات بأسمائهن وأرقامهن بالضغط على زر «إضافة رفيقة جديدة» في الأعلى لتتواصلي معهن بأمان!
+                        </p>
+                    </div>`;
+            } else {
+                wesalPeers.forEach(peer => {
+                    if (peer.status === 'requested') reqCount++;
+                    if (peer.status === 'connected') connCount++;
+
+                    const card = document.createElement('div');
+                    card.className = "p-4 border border-lupus-100 rounded-2xl flex items-center justify-between hover:bg-warmBg/50 transition text-xs";
+                    
+                    let buttonHTML = `<button onclick="sendWesalRequest('${peer.id}')" class="bg-lupus-700 hover:bg-lupus-800 text-white font-bold px-3 py-1.5 rounded-xl">طلب تواصل</button>`;
+                    if (peer.status === 'requested') buttonHTML = `<span class="bg-amber-100 text-amber-800 font-bold px-3 py-1.5 rounded-xl">قيد الانتظار...</span>`;
+                    else if (peer.status === 'connected') buttonHTML = `<span class="bg-emerald-100 text-emerald-800 font-bold px-3 py-1.5 rounded-xl">متصلة معك ✨</span>`;
+
+                    card.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-lupus-100 text-lupus-700 flex items-center justify-center font-bold text-sm">🌸</div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">${peer.name} (${peer.details})</h4>
+                                <p class="text-[10px] text-gray-500">اهتمامات: ${peer.interests}</p>
+                            </div>
+                        </div>
+                        ${buttonHTML}
+                    `;
+                    peersList.appendChild(card);
+
+                    if (peer.status === 'connected') {
+                        const connCard = document.createElement('div');
+                        connCard.className = "p-4 border border-emerald-200 bg-emerald-50/50 rounded-2xl space-y-2 text-xs";
+                        connCard.innerHTML = `
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">✨</div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">${peer.name}</h4>
+                                        <p class="text-[10px] text-gray-500">${peer.details} • ${peer.interests}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-2 border-t border-emerald-100 text-[11px] text-emerald-900 flex justify-between items-center">
+                                <span>📱 رقم هاتفها المتاح: <strong>${peer.phone}</strong></span>
+                                <button onclick="alert('جاري فتح المحادثة الخاصة الآمنة مع ${peer.name}')" class="bg-emerald-700 text-white px-3 py-1 rounded-lg font-bold">محادثة</button>
+                            </div>
+                        `;
+                        connList.appendChild(connCard);
+                    }
+                });
+            }
+
+            document.getElementById('wesal-req-count').innerText = reqCount;
+            document.getElementById('wesal-conn-count').innerText = connCount;
+        }
+
+        function openAddPeerModal() { document.getElementById('add-peer-modal').classList.remove('hidden'); }
+        function closeAddPeerModal() { document.getElementById('add-peer-modal').classList.add('hidden'); }
+
+        function saveNewRealPeer() {
+            const name = document.getElementById('peer-name-input').value.trim();
+            const details = document.getElementById('peer-details-input').value.trim() || '30 سنة - القاهرة';
+            const interests = document.getElementById('peer-interests-input').value.trim() || 'القراءة والتطريز';
+            const phone = document.getElementById('peer-phone-input').value.trim() || '010XXXXXXXX';
+
+            if (!name) { alert('برجاء كتابة اسم الرفيقة'); return; }
+
+            wesalPeers.push({ id: 'peer_' + Date.now(), name, details, interests, phone, status: 'none' });
+            localStorage.setItem('rafeeqa_wesal_real_peers', JSON.stringify(wesalPeers));
+
+            document.getElementById('peer-name-input').value = '';
+            document.getElementById('peer-phone-input').value = '';
+            closeAddPeerModal();
+            renderWesalDirectory();
+            alert(`تمت إضافة الرفيقة ${name} بنجاح إلى وصال! 🌸`);
+        }
+
+        function sendWesalRequest(peerId) {
+            const peer = wesalPeers.find(p => p.id === peerId);
+            if (peer) {
+                peer.status = 'requested';
+                localStorage.setItem('rafeeqa_wesal_real_peers', JSON.stringify(wesalPeers));
+                renderWesalDirectory();
+                
+                setTimeout(() => {
+                    peer.status = 'connected';
+                    localStorage.setItem('rafeeqa_wesal_real_peers', JSON.stringify(wesalPeers));
+                    renderWesalDirectory();
+                    alert(`✨ وافقت الرفيقة ${peer.name} على طلب التواصل الخاص بكي! يمكنك الآن رؤية رقمها ومحادثتها.`);
+                }, 1500);
+            }
+        }
+
+        function switchWesalTab(tabKey) {
+            ['directory', 'requests', 'connected'].forEach(t => {
+                document.getElementById(`wesal-tab-${t}`).classList.add('hidden');
+                document.getElementById(`wesal-tab-btn-${t}`).className = "px-3.5 py-1.5 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100";
+            });
+            document.getElementById(`wesal-tab-${tabKey}`).classList.remove('hidden');
+            document.getElementById(`wesal-tab-btn-${tabKey}`).className = "px-3.5 py-1.5 rounded-xl bg-lupus-700 text-white font-bold";
+        }
+
+        function switchLearnTab(tabKey) {
+            ['learn', 'quiz', 'myths'].forEach(t => {
+                document.getElementById(`learn-tab-content-${t}`).classList.add('hidden');
+                document.getElementById(`learn-tab-btn-${t}`).className = "px-4 py-2 rounded-xl bg-gray-100 text-gray-700 hover:bg-lupus-100";
+            });
+            document.getElementById(`learn-tab-content-${tabKey}`).classList.remove('hidden');
+            document.getElementById(`learn-tab-btn-${tabKey}`).className = "px-4 py-2 rounded-xl bg-lupus-700 text-white font-bold";
+        }
+
+        function checkQuizAnswer(btn, isCorrect) {
+            if (isCorrect) {
+                btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800', 'font-bold');
+                alert('إجابة صحيحة برافو عليكي! 🎉🌸');
+            } else {
+                btn.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-800');
+                alert('إجابة غير دقيقة، جربي تراجعي المعلومة 💡');
+            }
+        }
+
+        function navigateTo(viewId) {
+            ['home', 'assess', 'tracker', 'doctor-report', 'chat', 'forum', 'connect', 'learn', 'profile', 'privacy', 'about'].forEach(id => {
+                const el = document.getElementById(`view-${id}`);
+                if (el) el.classList.add('hidden');
+            });
+            const target = document.getElementById(`view-${viewId}`);
+            if (target) target.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openEmergencyModal() { document.getElementById('emergency-modal').classList.remove('hidden'); }
+        function closeEmergencyModal() { document.getElementById('emergency-modal').classList.add('hidden'); }
+
+        function showEmergencyStep(type) {
+            const details = document.getElementById('emergency-details');
+            details.classList.remove('hidden');
+
+            if (type === 'physical') {
+                details.innerHTML = `
+                    <p class="font-bold text-rose-900">🩺 إرشادات الطوارئ الجسدية:</p>
+                    <p>عند وجود سخونية شديدة، ألم حاد بالصدر، أو ضيق تنفس، توجهي لأقرب طوارئ مستشفى فوراً.</p>
+                    <p class="font-bold text-rose-700 mt-1">📞 إسعاف مصر: 123</p>`;
+            } else if (type === 'mental') {
+                details.innerHTML = `
+                    <p class="font-bold text-purple-900">🧠 خط الأمان النفسي العاجل:</p>
+                    <p>أمانك وسلامتك أولوية مطلقة. تذكري أن هذه المشاعر مجهدة ويمكن تجاوزها بالدعم.</p>
+                    <p class="font-bold text-purple-700 mt-1">📞 الأمانة العامة للصحة النفسية: 16423</p>`;
+            } else {
+                details.innerHTML = `
+                    <p class="font-bold text-lupus-900">💬 الدعم والاستشارة:</p>
+                    <p>سجلي أعراضك وراجعي طبيب الروماتيزم المتابع لترتيب خطة العلاج.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
+
